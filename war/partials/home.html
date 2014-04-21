@@ -1,0 +1,37 @@
+<tabset justified="true">
+    <tab heading="Home">
+    	<div id="pushobj">
+    		<div class="message-container">
+    			<span>Message: </span> 
+    			<input type="text" class="message-input" ng-model="message" spellcheck="true">
+    			<button class='btn btn-primary' ng-click="addAlert()">Add</button>
+    			<button class='btn btn-primary' ng-click="message = ''">Clear</button>
+    			<button class='btn btn-primary' ng-click="speakInput(message)">Talk</button>    				
+    		</div>    		
+	    	<div class="image-container">
+		    	<carousel interval="myInterval">
+					<slide ng-repeat="slide in slides" active="slide.active">
+				        <div class="message-images col-sm-4">
+				        	<img ng-src="{{slide.image1}}" style="margin:auto;">
+				        </div>
+				        <div class="message-images col-sm-4">
+				        	<img ng-src="{{slide.image2}}" style="margin:auto;">
+				        </div>
+				        <div class="message-images col-sm-4">
+				        	<img ng-src="{{slide.image3}}" style="margin:auto;">
+				        </div>
+				        <div class="carousel-caption">
+				        	<h4>Slide {{slide.id}}</h4>
+				        	<p>{{slide.text}}</p>
+				        </div>
+					</slide>
+				</carousel>
+			</div>		
+		</div>
+		<div id="menu"></div>
+		<div id="audio"></div>
+    </tab>
+    <tab heading="Favorites">
+    	<div class="gridStyle" ng-grid="gridOptions"></div>
+    </tab>    
+</tabset>

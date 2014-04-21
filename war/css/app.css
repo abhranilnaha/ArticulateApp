@@ -1,0 +1,79 @@
+/* app css stylesheet */
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #243342;  
+}
+
+.multilevelpushmenu_wrapper {	
+	width: 250px;
+	height: auto;
+	min-height: 300px;		
+}
+
+.multilevelpushmenu_wrapper h2 {    
+    line-height: 40px;
+}
+
+.multilevelpushmenu_wrapper .cursorPointer {    
+    line-height: 40px;
+}    
+
+#pushobj {
+	position: absolute;	
+	left: 300px;
+	color: #fff;
+	background: #243342;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 2em;
+	height: 300px;	
+}
+
+.carousel-indicators {
+	left: 600px;	
+}
+
+.carousel-indicators .active {
+    background-color: #336CA6;
+}    
+
+.carousel-indicators li {
+	border-color: #336CA6;
+}
+
+.carousel-caption {
+	color: #336CA6;
+	top: 230px;
+}
+
+.carousel-inner {
+	width: 1200px;
+}	
+
+.message-images {
+  padding: 0px;
+}
+
+.message-container {
+  padding: 10px;
+}
+
+.image-container {
+  padding: 10px;
+}
+
+.message-input {
+	width: 500px;	
+	border-radius: 4px;	
+}
+
+.btn-primary {
+	font-size: 16px;
+}	
+
+.gridStyle {     
+    background: #243342;
+    height: 500px;
+    width: 500px;
+}
