@@ -1,13 +1,14 @@
+<div class="message-container">
+	<span class="message-label">Message: </span> 
+	<input type="text" class="message-input" ng-model="message" spellcheck="true">
+	<button class='btn btn-primary' ng-click="addMessage()">Add</button>
+	<button class='btn btn-primary' ng-click="addPost()">Post</button>
+	<button class='btn btn-primary' ng-click="message = ''">Clear</button>
+	<button class='btn btn-primary' ng-click="speakInput(message)">Talk</button>    				
+</div> 
 <tabset justified="true">
     <tab heading="Home">
-    	<div id="pushobj">
-    		<div class="message-container">
-    			<span>Message: </span> 
-    			<input type="text" class="message-input" ng-model="message" spellcheck="true">
-    			<button class='btn btn-primary' ng-click="addAlert()">Add</button>
-    			<button class='btn btn-primary' ng-click="message = ''">Clear</button>
-    			<button class='btn btn-primary' ng-click="speakInput(message)">Talk</button>    				
-    		</div>    		
+    	<div id="pushobj">    		   		
 	    	<div class="image-container">
 		    	<carousel interval="myInterval">
 					<slide ng-repeat="slide in slides" active="slide.active">
@@ -28,10 +29,18 @@
 				</carousel>
 			</div>		
 		</div>
-		<div id="menu"></div>
+		
+		<button class='btn btn-info' ng-click="addCategories()">
+			<i class="fa fa-plus"></i> Add Category
+		</button>
+		<div id="menu">						
+		</div>
 		<div id="audio"></div>
     </tab>
     <tab heading="Favorites">
+    	Favorites Here
+    </tab>
+    <tab heading="Posts">
     	<div class="gridStyle" ng-grid="gridOptions"></div>
     </tab>    
 </tabset>
