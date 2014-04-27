@@ -12,7 +12,6 @@ import edu.sjsu.articulate.model.GetCategoriesResponse;
 
 public class CategoryDAO {
 	
-	@SuppressWarnings("unchecked")
 	public Category addCategory(String name, String parentName, String link, String icon) throws Exception {
 		
 		Category category = new Category();
@@ -23,12 +22,7 @@ public class CategoryDAO {
 			
 			PersistenceManager pm = PMF.get().getPersistenceManager();
 			
-			//Check if a category doesnt exists with name
-			Query q1 = pm.newQuery(Category.class);
-			q1.setFilter("name == nameParam");
-			q1.declareParameters("String nameParam");
-			
-			List<Category> existingCategoriesWithName = (List<Category>) q1.execute(name);
+			List<Category> existingCategoriesWithName = getCategoriesByName(name);
 			
 			if(existingCategoriesWithName.size() > 0) {
 				throw new Exception("Category name : " + name + " already exists");
@@ -39,11 +33,7 @@ public class CategoryDAO {
 				
 				parentName = parentName.trim();
 				
-				Query q2 = pm.newQuery(Category.class);
-				q2.setFilter("name == nameParam");
-				q2.declareParameters("String nameParam");
-				
-				List<Category> existingCategoriesWithParamName = (List<Category>) q2.execute(parentName);
+				List<Category> existingCategoriesWithParamName = getCategoriesByParentName(parentName);
 				
 				if(existingCategoriesWithParamName.size() == 0) {
 					throw new Exception("Parent Category name : " + parentName + " does not exist");
@@ -74,7 +64,7 @@ public class CategoryDAO {
 	public List<GetCategoriesResponse> getCategoriesResponse(String inputName) {
 		List<GetCategoriesResponse> categoriesResponse = new ArrayList<GetCategoriesResponse>();
 		
-		List<Category> categories = getCategories(inputName);
+		List<Category> categories = getCategoriesByParentName(inputName);
 
 		for (Category cat : categories) {
 			GetCategoriesResponse catResp = new GetCategoriesResponse();
@@ -85,7 +75,7 @@ public class CategoryDAO {
 			
 			List<GetCategoriesResponse> subCategoriesResponse = new ArrayList<GetCategoriesResponse>();
 			
-			List<Category> subCategories = getCategories(cat.getName());
+			List<Category> subCategories = getCategoriesByParentName(cat.getName());
 			
 			for(Category subCat : subCategories) {
 				GetCategoriesResponse subCatResp = new GetCategoriesResponse();
@@ -95,7 +85,7 @@ public class CategoryDAO {
 				
 				List<GetCategoriesResponse> subCategories1Response = new ArrayList<GetCategoriesResponse>();
 				
-				List<Category> subCategories1 = getCategories(subCat.getName());
+				List<Category> subCategories1 = getCategoriesByParentName(subCat.getName());
 				for(Category subCat1 : subCategories1) {
 					GetCategoriesResponse subCat1Resp = new GetCategoriesResponse();
 					subCat1Resp.setName(subCat1.getName());
@@ -117,7 +107,7 @@ public class CategoryDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Category> getCategories(String inputName) {
+	public List<Category> getCategoriesByParentName(String inputName) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		
 		
@@ -130,6 +120,32 @@ public class CategoryDAO {
 			
 			for(Category cat : categories) {
 				if(cat.getParentName().equals(inputName)) {
+					categoriesResp.add(cat);
+				}
+			}
+			
+		} finally {
+			pm.close();
+		}
+		
+		
+		return categoriesResp;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Category> getCategoriesByName(String inputName) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		
+		
+		List<Category> categoriesResp = new ArrayList<Category>();
+		
+		try {
+			Query q1 = pm.newQuery(Category.class);
+			
+			List<Category> categories = (List<Category>) q1.execute();
+			
+			for(Category cat : categories) {
+				if(cat.getName().equals(inputName)) {
 					categoriesResp.add(cat);
 				}
 			}
