@@ -4,8 +4,8 @@
 
 var articulateAppControllers = angular.module('articulateAppControllers', []);
 
-articulateAppControllers.controller('HomeCtrl', ['$scope', 'categoryService',
-  function($scope, categoryService) {
+articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'categoryService',
+  function($scope, $modal, categoryService) {
 	$scope.message = '';
 	
 	// Code for Menu Component
@@ -61,10 +61,45 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', 'categoryService',
 		$scope.addSlide(i);
 	}
 	
-	
+	// Code for text to speech
 	$scope.speakInput = function(message) {
 		speak(message);
 	}
+	
+	// Code for modal dialog
+	$scope.items = ['item1', 'item2', 'item3'];	
+	
+	$scope.addCategories = function(message) {		
+		var modalInstance = $modal.open({
+	      templateUrl: 'partials/categories.html',
+	      controller: function ($scope, items) {
+	    	  $scope.items = items;
+	    	  $scope.selected = {
+	    	    item: $scope.items[0]
+	    	  };
+
+	    	  $scope.ok = function () {
+	    	    modalInstance.close($scope.selected.item);
+	    	  };
+
+	    	  $scope.cancel = function () {
+	    	    modalInstance.dismiss('cancel');
+	    	  }; 
+	      },
+	      resolve: {	    	  
+	        items: function () {
+	          return $scope.items;
+	        }
+	      }
+	    });
+
+	    modalInstance.result.then(function (selectedItem) {
+	      $scope.selected = selectedItem;
+	    }, function () {
+	      console.log('Modal dismissed at: ' + new Date());
+	    });
+	};
+	
 	
 	// Code for Grid Component
 	$scope.myData = [{id: 1, name: "Abhranil Naha", gender: 'Male'},

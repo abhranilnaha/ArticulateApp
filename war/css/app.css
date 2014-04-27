@@ -63,14 +63,18 @@ body {
   padding: 10px;
 }
 
-.message-input {
-	width: 500px;	
-	border-radius: 4px;	
-}
-
-.btn-primary {
-	font-size: 16px;
+.message-label {
+  color: white;
+  font-weight: bold;
+  font-size: 20px;	
 }	
+
+.message-input {
+	width: 500px;
+	height: 35px;	
+	border-radius: 4px;
+	font-size: 20px;	
+}
 
 .gridStyle {     
     background: #243342;
