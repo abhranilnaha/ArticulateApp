@@ -1,7 +1,7 @@
 <div class="message-container">
 	<span class="message-label">Message: </span> 
 	<input type="text" class="message-input" ng-model="message" spellcheck="true">
-	<button class='btn btn-primary' ng-click="addMessage()">Add</button>
+	<button class='btn btn-primary' ng-click="openFileUploadPopup()">Add</button>
 	<button class='btn btn-primary' ng-click="addPost()">Post</button>
 	<button class='btn btn-primary' ng-click="message = ''">Clear</button>
 	<button class='btn btn-primary' ng-click="speakInput(message)">Talk</button>    				
@@ -38,7 +38,22 @@
 		<div id="audio"></div>
     </tab>
     <tab heading="Favorites">
-    	Favorites Here
+    	<div class=file-container>
+	    	<div>Uploaded files are listed as follows:</div>		
+			<div ng-repeat="file in files">
+				<div>Date: {{file.date}}</div>
+				<div>FileId: {{file.fileId}}</div>
+				<div>FileOwner: {{file.fileOwner}}</div>
+				<div>FileName: {{file.fileName}}</div>
+				<div>ContentType: {{file.contentType}}</div>
+				<div>Message: {{file.message}}</div>
+				<div>
+					<button class='btn btn-info' ng-click="deleteFile(file.fileId)">Delete</button>
+					<button class='btn btn-info' ng-click="downloadFile(file.fileId)">Download</button>					
+					<img height="50" src="/downloadFile?id={{file.fileId}}"/>
+				</div>
+			</div>
+		</div>
     </tab>
     <tab heading="Posts">
     	<div class="gridStyle" ng-grid="gridOptions"></div>

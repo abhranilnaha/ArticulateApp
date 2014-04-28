@@ -4,12 +4,12 @@
 
 var articulateAppControllers = angular.module('articulateAppControllers', []);
 
-articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'categoryService',
-  function($scope, $modal, categoryService) {
+articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeService', '$upload', '$timeout',
+  function($scope, $modal, homeService, $upload, $timeout) {
 	$scope.message = '';
 	
 	// Code for Menu Component
-	categoryService.getCategories().then(function (categoryMenu) {
+	homeService.getCategories().then(function (categoryMenu) {
 	  	
 	  	$('#menu').multilevelpushmenu({
 	        menu: categoryMenu,
@@ -100,6 +100,53 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'categorySe
 	    });
 	};
 	
+	// Code for file upload
+	homeService.getFiles().then(function (files) {
+		$scope.files = files;		
+	});
+	
+	$scope.deleteFile = function (fileId) {		
+		homeService.deleteFile(fileId).then(function (result) {
+			var file = _.filter($scope.files, function(file){ return file.fileId == result.message; });
+			var index = $scope.files.indexOf(file[0]);
+			$scope.files.splice(index, 1);			
+		});
+	}
+	
+	$scope.downloadFile = function (fileId) {	
+		// TO DO	
+	}
+	
+	$scope.openFileUploadPopup = function () {
+		var parentScope = $scope;
+		var modalInstance = $modal.open({
+			templateUrl: 'partials/fileUpload.html',
+			controller: function ($scope) {
+				$scope.onFileSelect = function($files) {				    
+				      var file = $files[0];
+				      $scope.upload = $upload.upload({
+				        url: '/uploadFile',
+				        method: 'POST',
+				        data : {
+							message : $(".message-input").val()
+						},
+				        file: file, 
+				      }).then(function(response) {
+				    	  $scope.result = response.data;
+				    	  homeService.getFiles().then(function (files) {				    		  
+				    		  $timeout(function(){
+				    			  parentScope.files = files;
+				    			  parentScope.$apply();
+				    	      }, 250);			    		  
+				    	  });
+				      });				      
+			    };
+			    $scope.ok = function () {
+			    	modalInstance.dismiss('cancel');
+		    	}; 
+			}
+		});
+    }	
 	
 	// Code for Grid Component
 	$scope.myData = [{id: 1, name: "Abhranil Naha", gender: 'Male'},

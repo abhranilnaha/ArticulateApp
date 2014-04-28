@@ -81,3 +81,13 @@ body {
     height: 500px;
     width: 500px;
 }
+
+.file-container {
+	color: white;
+}
+
+.upload-result {
+	color: red;
+	font-weight: bold;
+	padding-top: 20px;
+}

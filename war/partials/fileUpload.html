@@ -1,0 +1,10 @@
+<div class="modal-header">
+    <h3>Image Chooser</h3>
+</div>
+<div class="modal-body">	
+	Select an image: <input type="file" ng-file-select="onFileSelect($files)">
+	<div class="upload-result">{{result}}</div>	    
+</div>
+<div class="modal-footer">    
+    <button class="btn btn-warning" ng-click="ok()">OK</button>
+</div>
