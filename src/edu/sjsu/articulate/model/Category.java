@@ -2,14 +2,11 @@ package edu.sjsu.articulate.model;
 
 import java.io.Serializable;
 
-import javax.jdo.annotations.IdGeneratorStrategy;
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.Persistent;
-import javax.jdo.annotations.PrimaryKey;
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
-import com.google.appengine.api.datastore.Key;
-
-@PersistenceCapable
+@Entity(name = "Category")
 public class Category implements Serializable {
 
 	/**
@@ -17,28 +14,25 @@ public class Category implements Serializable {
 	 */
 	private static final long serialVersionUID = 393219879411876311L;
 	
-	@PrimaryKey
-    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-    private Key key;
- 
-    @Persistent
+    @Id
+    private Long id;
+    
+    @Index
     private String name;
     
-    @Persistent
+    @Index
     private String parentName;
  
-    @Persistent
     private String link;
  
-    @Persistent
     private String icon;
-
-	public Key getKey() {
-		return key;
+    	
+	public Long getId() {
+		return id;
 	}
 
-	public void setKey(Key key) {
-		this.key = key;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {

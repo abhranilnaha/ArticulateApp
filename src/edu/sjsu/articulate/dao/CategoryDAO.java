@@ -3,10 +3,10 @@ package edu.sjsu.articulate.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.jdo.PersistenceManager;
-import javax.jdo.Query;
+import com.googlecode.objectify.Objectify;
+import com.googlecode.objectify.cmd.Query;
 
-import edu.sjsu.articulate.PMF;
+import edu.sjsu.articulate.OfyService;
 import edu.sjsu.articulate.model.Category;
 import edu.sjsu.articulate.model.GetCategoriesResponse;
 
@@ -15,12 +15,11 @@ public class CategoryDAO {
 	public Category addCategory(String name, String parentName, String link, String icon) throws Exception {
 		
 		Category category = new Category();
-		
 		if (name != null && !name.trim().isEmpty()) {
 			
 			name = name.trim();
 			
-			PersistenceManager pm = PMF.get().getPersistenceManager();
+			Objectify ofy = OfyService.factory().begin();
 			
 			List<Category> existingCategoriesWithName = getCategoriesByName(name);
 			
@@ -40,26 +39,20 @@ public class CategoryDAO {
 				}
 			}
 			
-			
-			
 			category.setName(name);
 			category.setParentName(parentName);
 			category.setIcon(icon);
 			category.setLink(link);
-
-			try {
-				pm.makePersistent(category);
-			} finally {
-				pm.close();
-			}
+			
+			ofy.save().entity(category).now();
 			
 		} else {
 			throw new Exception("category name cannot be blank or null");
 		}
 		
 		return category;
-		
 	}
+	
 	
 	public List<GetCategoriesResponse> getCategoriesResponse(String inputName) {
 		List<GetCategoriesResponse> categoriesResponse = new ArrayList<GetCategoriesResponse>();
@@ -106,54 +99,37 @@ public class CategoryDAO {
 		return categoriesResponse;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<Category> getCategoriesByParentName(String inputName) {
-		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Objectify ofy = OfyService.factory().begin();
+		
+		
+		Query<Category> categories = ofy.load().type(Category.class).filter("parentName", inputName);
 		
 		
 		List<Category> categoriesResp = new ArrayList<Category>();
-		
-		try {
-			Query q1 = pm.newQuery(Category.class);
 			
-			List<Category> categories = (List<Category>) q1.execute();
-			
-			for(Category cat : categories) {
-				if(cat.getParentName().equals(inputName)) {
-					categoriesResp.add(cat);
-				}
-			}
-			
-		} finally {
-			pm.close();
+		for (Category cat : categories) {
+			categoriesResp.add(cat);
 		}
+			
 		
 		
 		return categoriesResp;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<Category> getCategoriesByName(String inputName) {
-		PersistenceManager pm = PMF.get().getPersistenceManager();
+		
+		Objectify ofy = OfyService.factory().begin();
+		
+		Query<Category> categories = ofy.load().type(Category.class).filter("name", inputName);
 		
 		
 		List<Category> categoriesResp = new ArrayList<Category>();
-		
-		try {
-			Query q1 = pm.newQuery(Category.class);
 			
-			List<Category> categories = (List<Category>) q1.execute();
-			
-			for(Category cat : categories) {
-				if(cat.getName().equals(inputName)) {
-					categoriesResp.add(cat);
-				}
-			}
-			
-		} finally {
-			pm.close();
+		for (Category cat : categories) {
+			categoriesResp.add(cat);
 		}
-		
+			
 		
 		return categoriesResp;
 	}
