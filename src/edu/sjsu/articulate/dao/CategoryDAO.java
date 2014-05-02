@@ -33,7 +33,7 @@ public class CategoryDAO {
 				
 				parentName = parentName.trim();
 				
-				List<Category> existingCategoriesWithParamName = getCategoriesByParentName(parentName);
+				List<Category> existingCategoriesWithParamName = getCategoriesByName(parentName);
 				
 				if(existingCategoriesWithParamName.size() == 0) {
 					throw new Exception("Parent Category name : " + parentName + " does not exist");
