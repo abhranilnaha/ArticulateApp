@@ -44,7 +44,13 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeServic
         });
 	  	
     });
-
+	
+	$scope.documents = [];
+	homeService.getCategories().then(function(result) {
+	    $scope.documents = result[0].items;
+	});
+	
+	
 	
 	// Code for Carousal Component
 	$scope.myInterval = -1;

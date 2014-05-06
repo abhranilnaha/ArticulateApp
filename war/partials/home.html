@@ -1,4 +1,21 @@
-<div class="message-container">
+<div style="float:right;">
+     
+    <form name="login" class="form-inline" action="index_submit" method="get" accept-charset="utf-8">  
+         <table ><tr>
+         	<td>
+            <label style="color:white;font-family:arial;display:block" for="usermail">Email</label>  
+            <input type="email" style="height:35px" name="usermail" placeholder="yourname@email.com" required> 
+            </td><td> 
+            <label style="color:white;font-family:arial;display:block"  for="password">Password</label>  
+            <input type="password" style="height:35px" name="password" placeholder="password" required> 
+            </td><td><br>
+            <input class="btn btn-primary" style="padding:2px" type="submit" value="Login">
+            </td></tr> 
+         </table>
+    </form>  
+    
+</div>
+<div class="message-container" style="padding-top:24px">
 	<span class="message-label">Message: </span> 
 	<input type="text" class="message-input" ng-model="message" spellcheck="true">
 	<button class='btn btn-primary' ng-click="openFileUploadPopup()">Add</button>
@@ -6,8 +23,8 @@
 	<button class='btn btn-primary' ng-click="message = ''">Clear</button>
 	<button class='btn btn-primary' ng-click="speakInput(message)">Talk</button>    				
 </div> 
-<div>
-<li ng-repeat="document in documents">
+
+<div ng-repeat="document in documents">
 <p style="color:white">{{document.name}}</p>
 </div>
 <tabset justified="true">
