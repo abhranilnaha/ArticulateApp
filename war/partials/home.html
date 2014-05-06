@@ -6,28 +6,26 @@
 	<button class='btn btn-primary' ng-click="message = ''">Clear</button>
 	<button class='btn btn-primary' ng-click="speakInput(message)">Talk</button>    				
 </div> 
+<div>
+<li ng-repeat="document in documents">
+<p style="color:white">{{document.name}}</p>
+</div>
 <tabset justified="true">
     <tab heading="Home">
     	<div id="pushobj">    		   		
-	    	<div class="image-container">
-		    	<carousel interval="myInterval">
-					<slide ng-repeat="slide in slides" active="slide.active">
-				        <div class="message-images col-sm-4">
-				        	<img ng-src="{{slide.image1}}" style="margin:auto;">
-				        </div>
-				        <div class="message-images col-sm-4">
-				        	<img ng-src="{{slide.image2}}" style="margin:auto;">
-				        </div>
-				        <div class="message-images col-sm-4">
-				        	<img ng-src="{{slide.image3}}" style="margin:auto;">
-				        </div>
-				        <div class="carousel-caption">
-				        	<h4>Slide {{slide.id}}</h4>
-				        	<p>{{slide.text}}</p>
-				        </div>
-					</slide>
-				</carousel>
-			</div>		
+	    	 	
+    	<div class='row' ng-repeat='slide in slides'>
+			<div style='color:white' class='col-sm-4'>				
+				<img ng-src='{{slide.image1}}' style="padding:5px;width:100px;height:100px"></img>
+			</div><t>
+			<div style='color:white' class='col-sm-4'>
+				<img ng-src='{{slide.image2}}' style="padding:5px;width:100px;height:100px"></img>
+			</div>
+			<div style='color:white' class='col-sm-4'>
+				<img ng-src='{{slide.image3}}' style="padding:5px;width:100px;height:100px"></img>
+			</div>			
+		</div><br>		
+       		
 		</div>
 		
 		<button class='btn btn-info' ng-click="addCategories()">

@@ -5,7 +5,7 @@
 var articulateAppControllers = angular.module('articulateAppControllers', []);
 
 articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeService', '$upload', '$timeout',
-  function($scope, $modal, homeService, $upload, $timeout) {
+  function($scope, $modal, homeService, $upload, $timeout,$http) {
 	$scope.message = '';
 	
 	// Code for Menu Component
@@ -44,12 +44,13 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeServic
         });
 	  	
     });
+
 	
 	// Code for Carousal Component
 	$scope.myInterval = -1;
 	var slides = $scope.slides = [];
 	$scope.addSlide = function(i) {		
-	    slides.push({	      
+	    slides.push({      
 	      image1: 'img/phones/t-mobile-mytouch-4g.' + i + '.jpg',
 	      image2: 'img/phones/dell-venue.' + i + '.jpg',
 	      image3: 'img/phones/samsung-galaxy-tab.' + i + '.jpg',

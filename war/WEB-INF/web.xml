@@ -41,6 +41,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>SetupCategoriesServlet</servlet-name>
+		<servlet-class>edu.sjsu.articulate.category.SetupCategoriesServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SetupCategoriesServlet</servlet-name>
+		<url-pattern>/setupCategories</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
    		<servlet-name>FileUploadServlet</servlet-name>
    		<servlet-class>edu.sjsu.articulate.file.FileUploadServlet</servlet-class>
 	</servlet>

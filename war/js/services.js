@@ -4,8 +4,8 @@
 
 var articulateAppServices = angular.module('articulateAppServices', []);
 
-articulateAppServices.service('homeService', ['$resource', function($resource) {
-    var resource = $resource('mocks/categories.json',
+articulateAppServices.service('homeService', ['$resource', function($resource,$http) {
+    var resource = $resource('./mocks/categories.json',
         {},
         {
             getCategories: { 
