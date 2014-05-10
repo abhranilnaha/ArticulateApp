@@ -2,6 +2,7 @@ package edu.sjsu.articulate.category;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServlet;
@@ -11,9 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import edu.sjsu.articulate.dao.CategoryDAO;
-import edu.sjsu.articulate.model.GetCategoriesResponse;
-import edu.sjsu.articulate.model.JSONResponse;
-import edu.sjsu.articulate.util.ServiceUtil;
+import edu.sjsu.articulate.model.Category;
+import edu.sjsu.articulate.model.Item;
 
 public class GetCategoriesServlet extends HttpServlet {
 
@@ -26,14 +26,30 @@ public class GetCategoriesServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-		JSONResponse jr = null;
+		String jsonOutput = "";
 		
-		List<GetCategoriesResponse> categories = categoryDAO.getCategoriesResponse("");
+		String level = request.getParameter("level");
 		
-		jr = ServiceUtil.buildJSONResponse(categories);
+		if(level != null) {
+			
+			List<Category> categories = categoryDAO.getCategoriesByLevel(level);
+			Gson gson = new Gson();
+			jsonOutput = gson.toJson(categories);
+			
+		} else {
+			List<Item> list = new ArrayList<Item>();
+			
+			Item itemRoot = new Item();
+			itemRoot.setTitle("All Categories");
+			itemRoot.setIcon("fa fa-reorder");
+			itemRoot.setItems(categoryDAO.getCategoriesResponse(""));
+			
+			list.add(itemRoot);
+			
+			Gson gson = new Gson();
+			jsonOutput = gson.toJson(list);
+		}
 		
-		Gson gson = new Gson();
-		String jsonOutput = gson.toJson(jr);
 
 		response.setContentType("application/json; charset=UTF-8");
 		PrintWriter out = response.getWriter();

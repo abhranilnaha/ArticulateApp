@@ -26,6 +26,9 @@ public class Category implements Serializable {
     private String link;
  
     private String icon;
+    
+    @Index
+    private String level;
     	
 	public Long getId() {
 		return id;
@@ -65,6 +68,14 @@ public class Category implements Serializable {
 
 	public void setIcon(String icon) {
 		this.icon = icon;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
 	}
 	
 }

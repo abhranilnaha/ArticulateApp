@@ -9,7 +9,9 @@ articulateAppServices.service('homeService', ['$resource', function($resource,$h
         {},
         {
             getCategories: { 
-            	method: 'GET', isArray: true 
+            	method: 'GET',
+            	url: '/getCategories',
+            	isArray: true 
             },
             getFiles: { 
             	method: 'GET', 

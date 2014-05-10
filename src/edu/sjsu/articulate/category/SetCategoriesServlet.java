@@ -32,10 +32,11 @@ public class SetCategoriesServlet extends HttpServlet {
 		String parentName = request.getParameter("parentName");
 		String icon = request.getParameter("icon");
 		String link = request.getParameter("link");
+		String level = request.getParameter("level");
 		
 		Category category = null;
 		try {
-			category = categoryDAO.addCategory(name, parentName, link, icon);
+			category = categoryDAO.addCategory(name, parentName, link, icon, level);
 			jr = ServiceUtil.buildJSONResponse(category);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
