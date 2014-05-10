@@ -130,11 +130,11 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeServic
 			var index = $scope.files.indexOf(file[0]);
 			$scope.files.splice(index, 1);			
 		});
-	}
+	};
 	
 	$scope.downloadFile = function (fileId) {	
 		// TO DO	
-	}
+	};
 	
 	$scope.openFileUploadPopup = function () {
 		var parentScope = $scope;
@@ -165,7 +165,53 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeServic
 		    	}; 
 			}
 		});
-    }	
+    };
+	
+	// Code for sentence maker
+	$scope.makeSentence = function () {
+		$scope.noun = 'mary';
+		$scope.verb = 'want';
+		$scope.object = 'tea';
+		var parentScope = $scope;
+		var modalInstance = $modal.open({
+			templateUrl: 'partials/sentenceMaker.html',
+			controller: function ($scope, noun, verb, object) {
+				$scope.noun = noun;
+				$scope.verb = verb;
+				$scope.object = object;
+				$scope.tense = 'present';
+				$scope.negation = 'no';
+				$scope.question = 'no';
+				$scope.makeSentence = function() {
+					var noun = $('#val1').text();
+					var verb = $('#val2').text();
+					var object = $('#val3').text();
+					var extra = $('#val4').text();
+					var tense = $('#val5').text();
+					var negation = $('#val6').text();
+					var question = $('#val7').text();
+					homeService.makeSentence(noun, verb, object, extra, tense, negation, question).then(function (result) {
+						$scope.sentenceOutput = result.message;
+					});
+			    };
+			    $scope.useSentence = function () {
+			    	parentScope.message = $scope.sentenceOutput;
+			    	modalInstance.dismiss('cancel');
+		    	}; 
+			},
+			resolve: {	    	  
+				noun: function () {
+		          return parentScope.noun;
+		        },
+		        verb: function () {
+		          return parentScope.verb;
+		        },
+		        object: function () {
+		          return parentScope.object;
+		        }
+		    }
+		});
+    };
 	
 	// Code for Grid Component
 	$scope.myData = [{id: 1, name: "Abhranil Naha", gender: 'Male'},
@@ -173,6 +219,7 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeServic
                      {id: 3, name: "Harini Aswin", gender: 'Female'},
                      {id: 4, name: "Asif Nadaf", gender: 'Male'},
                      {id: 5, name: "Priya Rajesh", gender: 'Female'}];
+	
     $scope.gridOptions = { 
     	data: 'myData',
     	columnDefs: [

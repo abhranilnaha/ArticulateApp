@@ -10,9 +10,8 @@ articulateAppServices.service('homeService', ['$resource', function($resource,$h
         {
             getCategories: { 
             	method: 'GET',
-            	isArray: true,
-            	//url: '/getCategories',
-            	 
+            	isArray: true
+            	//url: '/getCategories'            	 
             },
             getFiles: { 
             	method: 'GET', 
@@ -23,7 +22,12 @@ articulateAppServices.service('homeService', ['$resource', function($resource,$h
                 method: 'GET',                
                 url: '/deleteFile?action=delete&id=:id', 
             	isArray: false
-           }
+           },
+           makeSentence: {
+               method: 'GET',                
+               url: '/makeSentence?noun=:noun&verb=:verb&object=:object&extra=:extra&tense=:tense&negation=:negation&question=:question', 
+           	   isArray: false
+          }
         }
     );
     
@@ -41,6 +45,12 @@ articulateAppServices.service('homeService', ['$resource', function($resource,$h
     
     this.deleteFile = function(fileId) {
         return resource.deleteFile({id: fileId}).$promise.then(function(result){
+            return result;
+        });
+    };
+    
+    this.makeSentence = function(noun, verb, object, extra, tense, negation, question) {
+        return resource.makeSentence({noun: noun, verb: verb, object: object, extra: extra, tense :tense, negation: negation, question: question}).$promise.then(function(result){
             return result;
         });
     };

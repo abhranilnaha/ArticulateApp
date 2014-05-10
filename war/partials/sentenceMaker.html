@@ -1,0 +1,44 @@
+<div class="modal-header">
+    <h3>Sentence Maker</h3>
+</div>
+<div class="modal-body">	
+	<div class="row">
+		<span class="col-sm-2"><b>Noun:</b></span> <input style="width:200px;" type="text" ng-model="noun"> <br/><br/>
+		<span class="col-sm-2"><b>Verb:</b></span> <input style="width:200px;" type="text" ng-model="verb"> <br/><br/>
+		<span class="col-sm-2"><b>Object:</b></span> <input style="width:200px;" type="text" ng-model="object"> <br/><br/>
+		<span class="col-sm-2"><b>Extra:</b></span> <input style="width:200px;" type="text" ng-model="extra"> <br/><br/>	 
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-3"><b>Sentence Tense:</b> </div>	
+		<div class="col-sm-4">
+			<input type="radio" ng-model="tense" value="present">  Present <br/>
+		  	<input type="radio" ng-model="tense" value="past"> Past <br/>
+		  	<input type="radio" ng-model="tense" value="future"> Future <br/>
+	  	</div>
+  	</div>
+	
+	<div class="row">
+		<span class="col-sm-4"><b>Negate Sentence?</b> </span> <input type="checkbox" ng-model="negation" ng-true-value="yes" ng-false-value="no">
+	</div>
+	
+	<div class="row">
+		<span class="col-sm-4"><b>Interrogative Sentence?</b> </span> <input type="checkbox" ng-model="question" ng-true-value="yes" ng-false-value="no">
+	</div>	 
+	
+	<div class="row"><span class="col-sm-6 upload-result">Sentence Output: {{sentenceOutput}}</span></div>
+	
+	<div style='display:none;'>
+		<div id="val1">{{noun}}</div>
+		<div id="val2">{{verb}}</div>
+		<div id="val3">{{object}}</div>
+		<div id="val4">{{extra}}</div>
+		<div id="val5">{{tense}}</div>
+		<div id="val6">{{negation}}</div>
+		<div id="val7">{{question}}</div>
+	</div>	    
+</div>
+<div class="modal-footer">    
+    <button class="btn btn-warning" ng-click="makeSentence()">Make Sentence</button>
+    <button class="btn btn-success" ng-click="useSentence()">Use Sentence</button>
+</div>

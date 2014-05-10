@@ -1,0 +1,80 @@
+[
+    {
+        "title": "All Categories",
+        "icon": "fa fa-reorder",
+        "items": [           
+            {
+                "name": "I",
+                "icon": "fa fa-shopping-cart",
+                "link": "#",
+                "items": [
+                    {
+                        "title": "I",
+                        "icon": "fa fa-shopping-cart",
+                        "items": [
+                            {
+                                "name": "Want",
+                                "icon": "fa fa-tags",
+                                "link": "#",
+                                "items": [
+                                    {
+                                        "title": "Want",
+                                        "icon": "fa fa-tags",
+                                        "items": [
+                                            {
+                                                "name": "Water",
+                                                "icon": "fa fa-female",
+                                                "link": "#"                                                
+                                            },
+                                            {
+                                                "name": "Food",
+                                                "icon": "fa fa-male",
+                                                "link": "#"                                                
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+			{
+                "name": "You",
+                "icon": "fa fa-shopping-cart",
+                "link": "#",
+                "items": [
+                    {
+                        "title": "You",
+                        "icon": "fa fa-shopping-cart",
+                        "items": [
+                            {
+                                "name": "Understand",
+                                "icon": "fa fa-tags",
+                                "link": "#",
+                                "items": [
+                                    {
+                                        "title": "Understand",
+                                        "icon": "fa fa-tags",
+                                        "items": [
+                                            {
+                                                "name": "Me",
+                                                "icon": "fa fa-female",
+                                                "link": "#"                                                
+                                            },
+                                            {
+                                                "name": "English",
+                                                "icon": "fa fa-male",
+                                                "link": "#"                                                
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

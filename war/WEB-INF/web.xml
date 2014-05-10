@@ -85,6 +85,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
    		<url-pattern>/downloadFile</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+   		<servlet-name>SentenceMakerServlet</servlet-name>
+   		<servlet-class>edu.sjsu.articulate.sentence.SentenceMakerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+   		<servlet-name>SentenceMakerServlet</servlet-name>
+   		<url-pattern>/makeSentence</url-pattern>
+	</servlet-mapping>
+	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>

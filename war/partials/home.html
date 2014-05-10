@@ -3,10 +3,10 @@
     <form name="login" class="form-inline" action="index_submit" method="get" accept-charset="utf-8">  
          <table ><tr>
          	<td>
-            <label style="color:white;font-family:arial;display:block" for="usermail">Email</label>  
+            <label style="color:#357EBD;font-family:arial;display:block" for="usermail">Email</label>  
             <input type="email" style="height:35px" name="usermail" placeholder="yourname@email.com" required> 
             </td><td> 
-            <label style="color:white;font-family:arial;display:block"  for="password">Password</label>  
+            <label style="color:#357EBD;font-family:arial;display:block"  for="password">Password</label>  
             <input type="password" style="height:35px" name="password" placeholder="password" required> 
             </td><td><br>
             <input class="btn btn-primary" style="padding:2px" type="submit" value="Login">
@@ -15,35 +15,26 @@
     </form>  
     
 </div>
+
 <div class="message-container" style="padding-top:24px">
 	<span class="message-label">Message: </span> 
 	<input type="text" class="message-input" ng-model="message" spellcheck="true">
-	<button class='btn btn-primary' ng-click="openFileUploadPopup()">Add</button>
-	<button class='btn btn-primary' ng-click="addPost()">Post</button>
-	<button class='btn btn-primary' ng-click="message = ''">Clear</button>
-	<button class='btn btn-primary' ng-click="speakInput(message)">Talk</button>    				
-</div> 
-
+	<button class='btn btn-primary' ng-click="openFileUploadPopup()">Add to Favorites</button>
+	<button class='btn btn-primary' ng-click="makeSentence()">Make Sentence</button>
+	<button class='btn btn-primary' ng-click="message = ''">Clear Text</button>
+	<button class='btn btn-primary' ng-click="speakInput(message)">Speak Text</button>    				
+</div>
 
 <tabset justified="true">
     <tab heading="Home">
-    <div id="pushobj">   
-    	<div class='row' ng-repeat='document in documents'>
-			<div style='color:white' class='col-sm-12'>				
-				<a href ng-Click="getCategorybyParent(document)"><img ng-src='{{document.link}}' border="5" style="border-radius: 6px;
-margin-top: 10px;width:200px;height:200px"></img></a>
-			
-			</div>
-		
-					
-		</div>
-		
-			
-       
-</div>	
-       		
-		       		
-		
+	    <div id="pushobj">   
+	    	<div class='row' ng-repeat='document in documents'>
+				<div style='color:white' class='col-sm-12'>				
+					<a href ng-Click="getCategorybyParent(document)"><img ng-src='{{document.link}}' border="5" 
+						style="border-radius: 6px;margin-top: 10px;width:200px;height:200px"></img></a>			
+				</div>				
+			</div>       
+		</div>	
 		
 		<button class='btn btn-info' ng-click="addCategories()">
 			<i class="fa fa-plus"></i> Add Category
@@ -69,18 +60,5 @@ margin-top: 10px;width:200px;height:200px"></img></a>
 				</div>
 			</div>
 		</div>
-    </tab>
-    <tab heading="Posts">    	
-    	<div class='row'>
-			<div style='color:white' class='col-sm-4'>				
-				<img src='img/phones/lg-axis.0.jpg'></img>
-			</div>
-			<div style='color:white' class='col-sm-4'>
-				<img src='img/phones/lg-axis.1.jpg'></img>
-			</div>
-			<div style='color:white' class='col-sm-4'>
-				<img src='img/phones/lg-axis.2.jpg'></img>
-			</div>			
-		</div>		
-    </tab>    
+    </tab>        
 </tabset>
