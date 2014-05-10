@@ -24,26 +24,27 @@
 	<button class='btn btn-primary' ng-click="speakInput(message)">Talk</button>    				
 </div> 
 
-<div ng-repeat="document in documents">
-<p style="color:white">{{document.name}}</p>
-</div>
+
 <tabset justified="true">
     <tab heading="Home">
-    	<div id="pushobj">    		   		
-	    	 	
-    	<div class='row' ng-repeat='slide in slides'>
+    <div id="pushobj">   
+    	<div class='row' ng-repeat='document in documents'>
 			<div style='color:white' class='col-sm-4'>				
-				<img ng-src='{{slide.image1}}' style="padding:5px;width:100px;height:100px"></img>
-			</div><t>
-			<div style='color:white' class='col-sm-4'>
-				<img ng-src='{{slide.image2}}' style="padding:5px;width:100px;height:100px"></img>
+				<a href ng-Click="getCategorybyParent(document)"><img ng-src='{{document.link}}' style="padding:10px;width:200px;height:200px"></img></a>
 			</div>
 			<div style='color:white' class='col-sm-4'>
-				<img ng-src='{{slide.image3}}' style="padding:5px;width:100px;height:100px"></img>
+<!-- 				<img ng-src='{{slide.image2}}' style="padding:10px;width:200px;height:200px"></img> -->
+			</div>
+			<div style='color:white' class='col-sm-4'>
+<!-- 				<img ng-src='{{slide.image3}}' style="padding-top:10px;padding-bottom:10px;padding-left:10px;padding-right:10px;width:200px;height:200px"></img> -->
 			</div>			
-		</div><br>		
+		</div><br>	
+			
+       
+</div>	
        		
-		</div>
+		       		
+		
 		
 		<button class='btn btn-info' ng-click="addCategories()">
 			<i class="fa fa-plus"></i> Add Category

@@ -45,11 +45,23 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeServic
 	  	
     });
 	
-	$scope.documents = [];
+	$scope.documents= [];
+	
 	homeService.getCategories().then(function(result) {
 	    $scope.documents = result[0].items;
+	   
 	});
 	
+	$scope.Images = [];
+	$scope.getCategorybyParent = function(item) {
+	    //item += '.items[0].items';
+		$scope.message += ' ' +item.name;
+		$scope.Images += item;
+	    $scope.documents = item.items[0].items;
+	    //$scope.message += ' ' + item.name;
+	};
+	
+
 	
 	
 	// Code for Carousal Component
