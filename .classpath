@@ -8,7 +8,17 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-codec-1.4.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/guava-17.0.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/objectify-5.0.2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-api-labs.jar"/>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/simplenlg-v4.4.2.jar"/>
+	<classpathentry kind="lib" path="/home/varun/Downloads/appengine-java-sdk-1.9.4/lib/appengine-remote-api.jar"/>
+	<classpathentry kind="lib" path="/home/varun/Downloads/appengine-java-sdk-1.9.4/lib/appengine-tools-api.jar"/>
+	<classpathentry kind="lib" path="/home/varun/Downloads/appengine-java-sdk-1.9.4/lib/user/appengine-api-1.0-sdk-1.9.4.jar"/>
+	<classpathentry kind="lib" path="/home/varun/Downloads/appengine-java-sdk-1.9.4/lib/user/appengine-api-labs-1.9.4.jar"/>
+	<classpathentry kind="lib" path="/home/varun/Downloads/appengine-java-sdk-1.9.4/lib/user/appengine-jsr107cache-1.9.4.jar"/>
+	<classpathentry kind="lib" path="/home/varun/Downloads/appengine-java-sdk-1.9.4/lib/user/jsr107cache-1.1.jar"/>
+	<classpathentry kind="lib" path="/home/varun/Downloads/appengine-java-sdk-1.9.4/lib/user/libservice.jar"/>
+	<classpathentry kind="lib" path="/home/varun/Downloads/appengine-java-sdk-1.9.4"/>
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/App Engine"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
