@@ -13,7 +13,7 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeServic
 		
 		$scope.cache = $cacheFactory('appCache');
 		
-		$scope.documents= angular.copy(categoryMenu);;
+		$scope.documents= categoryMenu[0].items;
 			
 		$scope.Images = [];
 		$scope.getCategorybyParent = function(item) {		    
