@@ -119,6 +119,40 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeServic
 	    });
 	};
 	
+	// Code for sign up modal dialog
+	$scope.items = ['item1', 'item2', 'item3'];	
+		
+	$scope.signup = function(message) {		
+		var modalInstance = $modal.open({
+	      templateUrl: 'partials/signup.html',
+	      controller: function ($scope, items) {
+	    	  $scope.items = items;
+	    	  $scope.selected = {
+	    	    item: $scope.items[0]
+	    	  };
+
+	    	  $scope.submit = function () {
+	    	    modalInstance.close($scope.selected.item);
+	    	  };	
+	    	  
+	    	  $scope.cancel = function () {
+		    	    modalInstance.dismiss('cancel');
+		    	  }; 
+	      },
+	      resolve: {	    	  
+	        items: function () {
+	          return $scope.items;
+	        }
+	      }
+	    });
+		
+	    modalInstance.result.then(function (selectedItem) {
+	      $scope.selected = selectedItem;
+	    }, function () {
+	      console.log('Modal dismissed at: ' + new Date());
+	    });
+	};
+
 	// Code for file upload
 	homeService.getFiles().then(function (files) {
 		$scope.files = files;		
