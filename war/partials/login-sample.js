@@ -3,7 +3,7 @@
     function validate() {
     var un = document.myform.username.value;
     var pw = document.myform.pword.value;
-    var valid = false;
+    var valid = false; //just array of 4 usernames as of now
     var unArray = ["username1", "username2", "username3", "username4"]; // the last username will not be followed by a comma
     var pwArray = ["password1", "password2", "password3", "password4"]; // the password for each user name 
     for (var i=0; i <unArray.length; i++) {
