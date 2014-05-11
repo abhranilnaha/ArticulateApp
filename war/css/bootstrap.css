@@ -126,7 +126,8 @@ sub {
 }
 
 img {
-  border: 0;
+  border: 10px black;
+  border-radius: 30px;
 }
 
 svg:not(:root) {

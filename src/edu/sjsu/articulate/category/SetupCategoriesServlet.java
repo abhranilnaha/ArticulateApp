@@ -42,7 +42,7 @@ public class SetupCategoriesServlet extends HttpServlet {
 			categoryDAO.addCategory("hungry", "feel", "img/Categories/Level3/hungry.png", "", "3");
 			categoryDAO.addCategory("happy", "feel", "img/Categories/Level3/happy.png", "", "3");
 			categoryDAO.addCategory("sad", "feel", "img/Categories/Level3/sad.png", "", "3");
-			categoryDAO.addCategory("sunshine", "think", "#", "img/Categories/Level3/sunshine.png", "3");
+			categoryDAO.addCategory("sunshine", "think", "img/Categories/Level3/sunshine.png", "img/Categories/Level3/sunshine.png", "3");
 			categoryDAO.addCategory("books", "think", "img/Categories/Level3/books.png", "", "3");
 			categoryDAO.addCategory("You", "", "img/Categories/Level1/you.png", "", "1");
 			categoryDAO.addCategory("should", "You", "img/Categories/Level2/should.png", "", "2");
@@ -54,11 +54,11 @@ public class SetupCategoriesServlet extends HttpServlet {
 			categoryDAO.addCategory("listen", "must", "img/Categories/Level3/hear.png", "", "3");
 			categoryDAO.addCategory("me", "understand", "img/Categories/Level3/me.png", "", "3");
 			categoryDAO.addCategory("lecture", "understand", "img/Categories/Level3/lecture.png", "", "3");
-			categoryDAO.addCategory("How", "", "img/phones/272 pics/Level1/how.png", "", "1");
+			categoryDAO.addCategory("How", "", "img/Categories/Level1/how.png", "", "1");
 			categoryDAO.addCategory("are", "How", "img/Categories/Level2/are.png", "", "2");
 			categoryDAO.addCategory("is", "How", "img/Categories/Level2/is.png", "", "2");
 			categoryDAO.addCategory("you today", "are", "img/Categories/Level3/you.png", "", "3");
-			categoryDAO.addCategory("life", "is", "#", "img/Categories/Level3/life.png", "3");
+			categoryDAO.addCategory("life", "is", "img/Categories/Level3/life.png", "", "3");
 			categoryDAO.addCategory("Family", "", "img/Categories/Level1/family.png", "", "1");
 			categoryDAO.addCategory("cares", "Family", "img/Categories/Level2/cares.png", "", "2");
 			categoryDAO.addCategory("takes", "Family", "img/Categories/Level2/takes.png", "", "2");
@@ -66,7 +66,7 @@ public class SetupCategoriesServlet extends HttpServlet {
 			categoryDAO.addCategory("health", "cares", "img/Categories/Level3/health.png", "", "3");
 			categoryDAO.addCategory("happiness", "cares", "img/Categories/Level3/happiness.png", "", "3");
 			categoryDAO.addCategory("vacation", "takes", "img/Categories/Level3/vacation.png", "", "3");
-			categoryDAO.addCategory("car", "takes", "#", "img/Categories/Level3/car.png", "3");
+			categoryDAO.addCategory("car", "takes", "img/Categories/Level3/car.png", "", "3");
 			categoryDAO.addCategory("clothes", "bought", "img/Categories/Level3/clothes.png", "", "3");
 			categoryDAO.addCategory("medicines", "bought", "img/Categories/Level3/medicine.png", "", "3");
 			categoryDAO.addCategory("food", "bought", "img/Categories/Level3/food.png", "", "3");
