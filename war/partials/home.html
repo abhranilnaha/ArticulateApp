@@ -1,37 +1,64 @@
+<div style="float:right;">
+     
+    <form name="login" class="form-inline" action="index_submit" method="get" accept-charset="utf-8">  
+         <table ><tr>
+         	<td>
+            <label style="color:#357EBD;font-family:arial;display:block" for="usermail">Email</label>  
+            <input type="email" style="height:35px" name="usermail" placeholder="yourname@email.com" required> 
+            </td><td> 
+            <label style="color:#357EBD;font-family:arial;display:block"  for="password">Password</label>  
+            <input type="password" style="height:35px" name="password" placeholder="password" required> 
+            </td><td><br>
+            <input class="btn btn-primary" style="padding:2px" type="submit" value="Login">
+            </td></tr> 
+         </table>
+    </form>  
+    
+</div>
+
+<div class="message-container" style="padding-top:24px">
+	<span class="message-label">Message: </span> 
+	<input type="text" class="message-input" ng-model="message" spellcheck="true">
+	<button class='btn btn-primary' ng-click="openFileUploadPopup()">Add to Favorites</button>
+	<button class='btn btn-primary' ng-click="makeSentence()">Make Sentence</button>
+	<button class='btn btn-primary' ng-click="message = ''">Clear Text</button>
+	<button class='btn btn-primary' ng-click="speakInput(message)">Speak Text</button>    				
+</div>
+
 <tabset justified="true">
     <tab heading="Home">
-    	<div id="pushobj">
-    		<div class="message-container">
-    			<span>Message: </span> 
-    			<input type="text" class="message-input" ng-model="message" spellcheck="true">
-    			<button class='btn btn-primary' ng-click="addAlert()">Add</button>
-    			<button class='btn btn-primary' ng-click="message = ''">Clear</button>
-    			<button class='btn btn-primary' ng-click="speakInput(message)">Talk</button>    				
-    		</div>    		
-	    	<div class="image-container">
-		    	<carousel interval="myInterval">
-					<slide ng-repeat="slide in slides" active="slide.active">
-				        <div class="message-images col-sm-4">
-				        	<img ng-src="{{slide.image1}}" style="margin:auto;">
-				        </div>
-				        <div class="message-images col-sm-4">
-				        	<img ng-src="{{slide.image2}}" style="margin:auto;">
-				        </div>
-				        <div class="message-images col-sm-4">
-				        	<img ng-src="{{slide.image3}}" style="margin:auto;">
-				        </div>
-				        <div class="carousel-caption">
-				        	<h4>Slide {{slide.id}}</h4>
-				        	<p>{{slide.text}}</p>
-				        </div>
-					</slide>
-				</carousel>
-			</div>		
+	    <div id="pushobj">   
+	    	<div class='row' ng-repeat='document in documents'>
+				<div style='color:white' class='col-sm-12'>				
+					<a href ng-Click="getCategorybyParent(document)"><img ng-src='{{document.link}}' border="5" 
+						style="border-radius: 6px;margin-top: 10px;width:200px;height:200px"></img></a>			
+				</div>				
+			</div>       
+		</div>	
+		
+		<button class='btn btn-info' ng-click="addCategories()">
+			<i class="fa fa-plus"></i> Add Category
+		</button>
+		<div id="menu">						
 		</div>
-		<div id="menu"></div>
 		<div id="audio"></div>
     </tab>
     <tab heading="Favorites">
-    	<div class="gridStyle" ng-grid="gridOptions"></div>
-    </tab>    
+    	<div class=file-container>
+	    	<div>Uploaded files are listed as follows:</div>		
+			<div ng-repeat="file in files">
+				<div>Date: {{file.date}}</div>
+				<div>FileId: {{file.fileId}}</div>
+				<div>FileOwner: {{file.fileOwner}}</div>
+				<div>FileName: {{file.fileName}}</div>
+				<div>ContentType: {{file.contentType}}</div>
+				<div>Message: {{file.message}}</div>
+				<div>
+					<button class='btn btn-info' ng-click="deleteFile(file.fileId)">Delete</button>
+					<button class='btn btn-info' ng-click="downloadFile(file.fileId)">Download</button>					
+					<img height="50" src="/downloadFile?id={{file.fileId}}"/>
+				</div>
+			</div>
+		</div>
+    </tab>        
 </tabset>

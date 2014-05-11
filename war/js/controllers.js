@@ -4,12 +4,12 @@
 
 var articulateAppControllers = angular.module('articulateAppControllers', []);
 
-articulateAppControllers.controller('HomeCtrl', ['$scope', 'categoryService',
-  function($scope, categoryService) {
+articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeService', '$upload', '$timeout',
+  function($scope, $modal, homeService, $upload, $timeout,$http) {
 	$scope.message = '';
 	
 	// Code for Menu Component
-	categoryService.getCategories().then(function (categoryMenu) {
+	homeService.getCategories().then(function (categoryMenu) {
 	  	
 	  	$('#menu').multilevelpushmenu({
 	        menu: categoryMenu,
@@ -45,11 +45,30 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', 'categoryService',
 	  	
     });
 	
+	$scope.documents= [];
+	
+	homeService.getCategories().then(function(result) {
+	    $scope.documents = result[0].items;
+	   
+	});
+	
+	$scope.Images = [];
+	$scope.getCategorybyParent = function(item) {
+	    //item += '.items[0].items';
+		$scope.message += ' ' +item.name;
+		$scope.Images += item;
+	    $scope.documents = item.items[0].items;
+	    //$scope.message += ' ' + item.name;
+	};
+	
+
+	
+	
 	// Code for Carousal Component
 	$scope.myInterval = -1;
 	var slides = $scope.slides = [];
 	$scope.addSlide = function(i) {		
-	    slides.push({	      
+	    slides.push({      
 	      image1: 'img/phones/t-mobile-mytouch-4g.' + i + '.jpg',
 	      image2: 'img/phones/dell-venue.' + i + '.jpg',
 	      image3: 'img/phones/samsung-galaxy-tab.' + i + '.jpg',
@@ -61,10 +80,172 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', 'categoryService',
 		$scope.addSlide(i);
 	}
 	
-	
+	// Code for text to speech
 	$scope.speakInput = function(message) {
 		speak(message);
 	}
+	
+	// Code for modal dialog
+	$scope.items = ['item1', 'item2', 'item3'];	
+	
+	$scope.addCategories = function(message) {		
+		var modalInstance = $modal.open({
+	      templateUrl: 'partials/categories.html',
+	      controller: function ($scope, items) {
+	    	  $scope.items = items;
+	    	  $scope.selected = {
+	    	    item: $scope.items[0]
+	    	  };
+
+	    	  $scope.ok = function () {
+	    	    modalInstance.close($scope.selected.item);
+	    	  };
+
+	    	  $scope.cancel = function () {
+	    	    modalInstance.dismiss('cancel');
+	    	  }; 
+	      },
+	      resolve: {	    	  
+	        items: function () {
+	          return $scope.items;
+	        }
+	      }
+	    });
+
+	    modalInstance.result.then(function (selectedItem) {
+	      $scope.selected = selectedItem;
+	    }, function () {
+	      console.log('Modal dismissed at: ' + new Date());
+	    });
+	};
+	
+	// Code for sign up modal dialog
+	$scope.items = ['item1', 'item2', 'item3'];	
+		
+	$scope.signup = function(message) {		
+		var modalInstance = $modal.open({
+	      templateUrl: 'partials/signup.html',
+	      controller: function ($scope, items) {
+	    	  $scope.items = items;
+	    	  $scope.selected = {
+	    	    item: $scope.items[0]
+	    	  };
+
+	    	  $scope.submit = function () {
+	    	    modalInstance.close($scope.selected.item);
+	    	  };	
+	    	  
+	    	  $scope.cancel = function () {
+		    	    modalInstance.dismiss('cancel');
+		    	  }; 
+	      },
+	      resolve: {	    	  
+	        items: function () {
+	          return $scope.items;
+	        }
+	      }
+	    });
+		
+	    modalInstance.result.then(function (selectedItem) {
+	      $scope.selected = selectedItem;
+	    }, function () {
+	      console.log('Modal dismissed at: ' + new Date());
+	    });
+	};
+
+	// Code for file upload
+	homeService.getFiles().then(function (files) {
+		$scope.files = files;		
+	});
+	
+	$scope.deleteFile = function (fileId) {		
+		homeService.deleteFile(fileId).then(function (result) {
+			var file = _.filter($scope.files, function(file){ return file.fileId == result.message; });
+			var index = $scope.files.indexOf(file[0]);
+			$scope.files.splice(index, 1);			
+		});
+	};
+	
+	$scope.downloadFile = function (fileId) {	
+		// TO DO	
+	};
+	
+	$scope.openFileUploadPopup = function () {
+		var parentScope = $scope;
+		var modalInstance = $modal.open({
+			templateUrl: 'partials/fileUpload.html',
+			controller: function ($scope) {
+				$scope.onFileSelect = function($files) {				    
+				      var file = $files[0];
+				      $scope.upload = $upload.upload({
+				        url: '/uploadFile',
+				        method: 'POST',
+				        data : {
+							message : $(".message-input").val()
+						},
+				        file: file, 
+				      }).then(function(response) {
+				    	  $scope.result = response.data;
+				    	  homeService.getFiles().then(function (files) {				    		  
+				    		  $timeout(function(){
+				    			  parentScope.files = files;
+				    			  parentScope.$apply();
+				    	      }, 250);			    		  
+				    	  });
+				      });				      
+			    };
+			    $scope.ok = function () {
+			    	modalInstance.dismiss('cancel');
+		    	}; 
+			}
+		});
+    };
+	
+	// Code for sentence maker
+	$scope.makeSentence = function () {
+		$scope.noun = 'mary';
+		$scope.verb = 'want';
+		$scope.object = 'tea';
+		var parentScope = $scope;
+		var modalInstance = $modal.open({
+			templateUrl: 'partials/sentenceMaker.html',
+			controller: function ($scope, noun, verb, object) {
+				$scope.noun = noun;
+				$scope.verb = verb;
+				$scope.object = object;
+				$scope.tense = 'present';
+				$scope.negation = 'no';
+				$scope.question = 'no';
+				$scope.makeSentence = function() {
+					var noun = $('#val1').text();
+					var verb = $('#val2').text();
+					var object = $('#val3').text();
+					var extra = $('#val4').text();
+					var tense = $('#val5').text();
+					var negation = $('#val6').text();
+					var question = $('#val7').text();
+					homeService.makeSentence(noun, verb, object, extra, tense, negation, question).then(function (result) {
+						$scope.sentenceOutput = result.message;
+					});
+			    };
+			    $scope.useSentence = function () {
+			    	parentScope.message = $scope.sentenceOutput;
+			    	modalInstance.dismiss('cancel');
+		    	}; 
+			},
+			resolve: {	    	  
+				noun: function () {
+		          return parentScope.noun;
+		        },
+		        verb: function () {
+		          return parentScope.verb;
+		        },
+		        object: function () {
+		          return parentScope.object;
+		        }
+		    }
+		});
+    };
 	
 	// Code for Grid Component
 	$scope.myData = [{id: 1, name: "Abhranil Naha", gender: 'Male'},
@@ -72,6 +253,7 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', 'categoryService',
                      {id: 3, name: "Harini Aswin", gender: 'Female'},
                      {id: 4, name: "Asif Nadaf", gender: 'Male'},
                      {id: 5, name: "Priya Rajesh", gender: 'Female'}];
+	
     $scope.gridOptions = { 
     	data: 'myData',
     	columnDefs: [

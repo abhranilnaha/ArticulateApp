@@ -12,6 +12,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>ArticulateAppGetServlet</servlet-name>
 		<url-pattern>/articulateAppGetData</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>ArticulateAppSetServlet</servlet-name>
 		<servlet-class>edu.sjsu.articulate.ArticulateAppSetServlet</servlet-class>
@@ -20,6 +21,79 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>ArticulateAppSetServlet</servlet-name>
 		<url-pattern>/articulateAppSetData</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>GetCategoriesServlet</servlet-name>
+		<servlet-class>edu.sjsu.articulate.category.GetCategoriesServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetCategoriesServlet</servlet-name>
+		<url-pattern>/getCategories</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SetCategoriesServlet</servlet-name>
+		<servlet-class>edu.sjsu.articulate.category.SetCategoriesServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SetCategoriesServlet</servlet-name>
+		<url-pattern>/setCategories</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SetupCategoriesServlet</servlet-name>
+		<servlet-class>edu.sjsu.articulate.category.SetupCategoriesServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SetupCategoriesServlet</servlet-name>
+		<url-pattern>/setupCategories</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+   		<servlet-name>FileUploadServlet</servlet-name>
+   		<servlet-class>edu.sjsu.articulate.file.FileUploadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+   		<servlet-name>FileUploadServlet</servlet-name>
+   		<url-pattern>/uploadFile</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+   		<servlet-name>FileListServlet</servlet-name>
+   		<servlet-class>edu.sjsu.articulate.file.FileListServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+   		<servlet-name>FileListServlet</servlet-name>
+   		<url-pattern>/listFile</url-pattern>
+	</servlet-mapping>	
+	
+	<servlet>
+   		<servlet-name>FileManagerServlet</servlet-name>
+   		<servlet-class>edu.sjsu.articulate.file.FileManagerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+   		<servlet-name>FileManagerServlet</servlet-name>
+   		<url-pattern>/deleteFile</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+   		<servlet-name>FileDownloadServlet</servlet-name>
+   		<servlet-class>edu.sjsu.articulate.file.FileDownloadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+   		<servlet-name>FileDownloadServlet</servlet-name>
+   		<url-pattern>/downloadFile</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+   		<servlet-name>SentenceMakerServlet</servlet-name>
+   		<servlet-class>edu.sjsu.articulate.sentence.SentenceMakerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+   		<servlet-name>SentenceMakerServlet</servlet-name>
+   		<url-pattern>/makeSentence</url-pattern>
+	</servlet-mapping>
+	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>

@@ -2,8 +2,7 @@
 
 body {
   margin: 0;
-  padding: 0;
-  background: #243342;  
+  padding: 0;  
 }
 
 .multilevelpushmenu_wrapper {	
@@ -22,9 +21,7 @@ body {
 
 #pushobj {
 	position: absolute;	
-	left: 300px;
-	color: #fff;
-	background: #243342;
+	left: 300px;		
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-size: 2em;
 	height: 300px;	
@@ -63,17 +60,41 @@ body {
   padding: 10px;
 }
 
-.message-input {
-	width: 500px;	
-	border-radius: 4px;	
-}
-
-.btn-primary {
-	font-size: 16px;
+.message-label {
+  color: #357EBD;
+  font-weight: bold;
+  font-size: 20px;	
 }	
+
+.message-input {
+	width: 500px;
+	height: 35px;	
+	border-radius: 4px;
+	font-size: 20px;
+	border-bottom: 1px solid;
+    border-right: 1px solid;	
+}
 
 .gridStyle {     
     background: #243342;
     height: 500px;
     width: 500px;
 }
+
+.file-container {
+	color: #357EBD;
+}
+
+.upload-result {
+	color: red;
+	font-weight: bold;
+	padding-top: 20px;
+}
+
+.nav-tabs.nav-justified > .active > a, .nav-tabs.nav-justified > .active > a:hover, .nav-tabs.nav-justified > .active > a:focus {
+	background-color: #F0AD4E;
+}
+
+.btn-primary {
+	margin-bottom: 7px;
+}	
