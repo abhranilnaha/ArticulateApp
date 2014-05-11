@@ -55,10 +55,15 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeServic
 	$scope.Images = [];
 	$scope.getCategorybyParent = function(item) {
 	    //item += '.items[0].items';
-		$scope.message += ' ' +item.name;
-		$scope.Images += item;
-	    $scope.documents = item.items[0].items;
-	    //$scope.message += ' ' + item.name;
+		
+		
+		
+			$scope.message += ' ' +item.name;
+			$scope.Images += item;
+			 $scope.documents = item.items[0].items;	
+			 
+	    //$scope.message += ' ' - item.name;
+		
 	};
 	
 
