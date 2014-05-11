@@ -4,12 +4,23 @@
 
 var articulateAppControllers = angular.module('articulateAppControllers', []);
 
-articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeService', '$upload', '$timeout',
-  function($scope, $modal, homeService, $upload, $timeout,$http) {
+articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeService', '$upload', '$timeout', '$location', '$cacheFactory',
+  function($scope, $modal, homeService, $upload, $timeout, $location, $cacheFactory) {
 	$scope.message = '';
 	
 	// Code for Menu Component
 	homeService.getCategories().then(function (categoryMenu) {
+		
+		$scope.cache = $cacheFactory('appCache');
+		
+		$scope.documents= angular.copy(categoryMenu);;
+			
+		$scope.Images = [];
+		$scope.getCategorybyParent = function(item) {		    
+			$scope.message += ' ' +item.name;
+			$scope.Images += item;
+		    $scope.documents = item.items[0].items;		    
+		};
 	  	
 	  	$('#menu').multilevelpushmenu({
 	        menu: categoryMenu,
@@ -43,26 +54,7 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeServic
 	        }    
         });
 	  	
-    });
-	
-	$scope.documents= [];
-	
-	homeService.getCategories().then(function(result) {
-	    $scope.documents = result[0].items;
-	   
-	});
-	
-	$scope.Images = [];
-	$scope.getCategorybyParent = function(item) {
-	    //item += '.items[0].items';
-		$scope.message += ' ' +item.name;
-		$scope.Images += item;
-	    $scope.documents = item.items[0].items;
-	    //$scope.message += ' ' + item.name;
-	};
-	
-
-	
+    });	
 	
 	// Code for Carousal Component
 	$scope.myInterval = -1;
@@ -119,40 +111,6 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeServic
 	    });
 	};
 	
-	// Code for sign up modal dialog
-	$scope.items = ['item1', 'item2', 'item3'];	
-		
-	$scope.signup = function(message) {		
-		var modalInstance = $modal.open({
-	      templateUrl: 'partials/signup.html',
-	      controller: function ($scope, items) {
-	    	  $scope.items = items;
-	    	  $scope.selected = {
-	    	    item: $scope.items[0]
-	    	  };
-
-	    	  $scope.submit = function () {
-	    	    modalInstance.close($scope.selected.item);
-	    	  };	
-	    	  
-	    	  $scope.cancel = function () {
-		    	    modalInstance.dismiss('cancel');
-		    	  }; 
-	      },
-	      resolve: {	    	  
-	        items: function () {
-	          return $scope.items;
-	        }
-	      }
-	    });
-		
-	    modalInstance.result.then(function (selectedItem) {
-	      $scope.selected = selectedItem;
-	    }, function () {
-	      console.log('Modal dismissed at: ' + new Date());
-	    });
-	};
-
 	// Code for file upload
 	homeService.getFiles().then(function (files) {
 		$scope.files = files;		
@@ -246,20 +204,26 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeServic
 		    }
 		});
     };
-	
-	// Code for Grid Component
-	$scope.myData = [{id: 1, name: "Abhranil Naha", gender: 'Male'},
-                     {id: 2, name: "Varun Dixit", gender: 'Male'},
-                     {id: 3, name: "Harini Aswin", gender: 'Female'},
-                     {id: 4, name: "Asif Nadaf", gender: 'Male'},
-                     {id: 5, name: "Priya Rajesh", gender: 'Female'}];
-	
-    $scope.gridOptions = { 
-    	data: 'myData',
-    	columnDefs: [
-    	             {field:'id', displayName:'ID'},
-    	             {field:'name', displayName:'Name'}, 
-    	             {field:'gender', displayName:'Gender'}
-    	            ]
-    };
+    
+    $scope.signIn = function() {
+    	$scope.userEmail = $('#userEmail').val();
+    	$scope.cache.put('userName', userEmail);
+    	$scope.authenticated = true;
+    }
+    
+    $scope.signUp = function() {
+    	$scope.userEmail = $('#signUpEmail').val();
+    	$scope.cache.put('userName', userEmail);
+    	$scope.authenticated = true;
+    }
+    
+    $scope.signOut = function() {
+    	$scope.userEmail = '';
+    	$scope.cache.remove('userName');
+    	$scope.authenticated = false;
+    }
+    
+    $scope.reset = function() {
+    	$location.path('/');
+    }    
 }]);

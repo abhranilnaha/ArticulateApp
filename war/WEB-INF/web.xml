@@ -94,6 +94,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
    		<url-pattern>/makeSentence</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+   		<servlet-name>AuthenticationServlet</servlet-name>
+   		<servlet-class>edu.sjsu.articulate.authentication.AuthenticationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+   		<servlet-name>AuthenticationServlet</servlet-name>
+   		<url-pattern>/authenticateUser</url-pattern>
+	</servlet-mapping>
+		
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
