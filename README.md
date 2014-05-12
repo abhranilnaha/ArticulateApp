@@ -11,15 +11,15 @@ All the UI Components are loaded
 
 Dependencies required to run the code
 =======================================
-Objectify
-Guava
-Google App Engine run time jars
-Bootstrap CSS
-JQuery
-Crypto-JS
-Speak-JS
-Underscore.js
-Font Awesome
+Objectify,
+Guava,
+Google App Engine run time jars,
+Bootstrap CSS,
+JQuery,
+Crypto-JS,
+Speak-JS,
+Underscore.js,
+Font Awesome,
 SimpleNLG
 
 URLs made available when the server is turned on
@@ -34,8 +34,8 @@ Export the app as war and deploy to the Google App Engine server
 
 Team members
 ===================
-Abhranil Naha
-Varun Dixit
-Harini Aswin
-Priya Rajesh
+Abhranil Naha,
+Varun Dixit,
+Harini Aswin,
+Priya Rajesh,
 Asif Nadaf
