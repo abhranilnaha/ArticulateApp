@@ -4,14 +4,12 @@
 
 var articulateAppControllers = angular.module('articulateAppControllers', []);
 
-articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeService', '$upload', '$timeout', '$location', '$cacheFactory',
-  function($scope, $modal, homeService, $upload, $timeout, $location, $cacheFactory) {
+articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeService', '$upload', '$timeout', '$location',
+  function($scope, $modal, homeService, $upload, $timeout, $location) {
 	$scope.message = '';
 	
 	// Code for Menu Component
-	homeService.getCategories().then(function (categoryMenu) {
-		
-		$scope.cache = $cacheFactory('appCache');
+	homeService.getCategories().then(function (categoryMenu) {		
 		
 		$scope.documents= categoryMenu[0].items;
 			
@@ -77,30 +75,49 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeServic
 		speak(message);
 	}
 	
-	// Code for modal dialog
-	$scope.items = ['item1', 'item2', 'item3'];	
-	
-	$scope.addCategories = function(message) {		
+	// Code for add categories modal dialog
+	$scope.addCategories = function() {		
 		var modalInstance = $modal.open({
 	      templateUrl: 'partials/categories.html',
-	      controller: function ($scope, items) {
-	    	  $scope.items = items;
-	    	  $scope.selected = {
-	    	    item: $scope.items[0]
+	      controller: function ($scope) {
+	    	  homeService.getCategoriesByLevel(1).then(function (categoryMenu) {
+	    		  $scope.category1Menu = categoryMenu;
+	    	  });
+	    	  
+	    	  homeService.getCategoriesByLevel(2).then(function (categoryMenu) {
+	    		  $scope.level2Menu = categoryMenu;
+	    	  });
+	    	  
+	    	  $scope.getCategory2 = function(category1) {
+	    		  $scope.category1 = category1;
+	    		  $scope.category2Menu = _.filter($scope.level2Menu, function(category){ return category.parentName == category1.name; });
+	    	  };
+	    	  
+	    	  $scope.setCategory2 = function(category2) {
+	    		  $scope.category2 = category2;	    		  
 	    	  };
 
-	    	  $scope.ok = function () {
-	    	    modalInstance.close($scope.selected.item);
+	    	  $scope.addCategory = function () {
+	    		  var name = $('#newCategory').val();
+	    		  var level = 1;
+	    		  var parentName = '';
+	    		  if ($scope.category1) {
+	    			  parentName = $scope.category1.name; 
+	    			  level++;
+	    		  }	  
+	    		  if ($scope.category2) {
+	    			  parentName = $scope.category2.name;
+	    			  level++;
+	    		  }	  
+	    		  homeService.setCategory(name, parentName, level).then(function (category) {
+	    			  modalInstance.dismiss('cancel');
+	    			  $location.path('/');
+	    		  });
 	    	  };
 
 	    	  $scope.cancel = function () {
 	    	    modalInstance.dismiss('cancel');
 	    	  }; 
-	      },
-	      resolve: {	    	  
-	        items: function () {
-	          return $scope.items;
-	        }
 	      }
 	    });
 
@@ -207,8 +224,7 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeServic
     
     $scope.signIn = function() {
     	$scope.userEmail = $('#userEmail').val();
-    	$scope.userPassword = $('#userPassword').val();
-    	$scope.cache.put('userName', userEmail);
+    	$scope.userPassword = $('#userPassword').val();    	
     	homeService.getUser($scope.userEmail).then(function (response) {
     		if (response.message) {
     		var savedPassword  = CryptoJS.enc.Utf8.stringify(angular.fromJson(response.message));
@@ -233,7 +249,10 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeServic
     			    	} else {
     			    		$scope.message = "Passwords do not match!";
     			    	}	
-    		    	}; 
+    		    	};
+    		    	$scope.reset = function() {
+    		    		modalInstance.dismiss('cancel');
+    		    	};
     			},
     			resolve: {	    	  
     				message: function () {
@@ -247,8 +266,7 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeServic
     $scope.signUp = function(userEmail, userPassword1, userPassword2) {
     	$scope.userEmail = $('#signUpEmail').val() || userEmail;
     	$scope.userPassword1 = $('#signUpPassword1').val() || userPassword1;
-    	$scope.userPassword2 = $('#signUpPassword2').val() || userPassword2;
-    	$scope.cache.put('userName', $scope.userEmail);
+    	$scope.userPassword2 = $('#signUpPassword2').val() || userPassword2;    	
     	if ($scope.userPassword1 != $scope.userPassword2) {
     		$scope.message = "Passwords do not match!"
     		return "error";	
@@ -260,8 +278,7 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeServic
     }
     
     $scope.signOut = function() {
-    	$scope.userEmail = '';
-    	$scope.cache.remove('userName');
+    	$scope.userEmail = '';    	
     	$scope.authenticated = false;
     }
     

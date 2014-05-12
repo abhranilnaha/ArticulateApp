@@ -13,6 +13,16 @@ articulateAppServices.service('homeService', ['$resource', function($resource,$h
             	isArray: true,
             	url: '/getCategories'            	 
             },
+            getCategoriesByLevel: { 
+            	method: 'GET',
+            	isArray: true,
+            	url: '/getCategories?level=:level'            	 
+            },
+            setCategory: {
+          	  url: '/setCategories', 
+          	  method: "POST", 
+          	  isArray: false
+            },
             getFiles: { 
             	method: 'GET', 
             	url: '/listFile', 
@@ -43,6 +53,19 @@ articulateAppServices.service('homeService', ['$resource', function($resource,$h
     
     this.getCategories = function() {
         return resource.getCategories().$promise.then(function(result){
+            return result;
+        });
+    };
+    
+    this.getCategoriesByLevel = function(level) {
+        return resource.getCategories({level:level}).$promise.then(function(result){
+            return result;
+        });
+    };
+    
+    this.setCategory = function(name, parentName, level) {
+    	var category = {name: name, parentName: parentName, level: level, icon: '', link: ''};
+        return resource.setCategory(category).$promise.then(function(result) {
             return result;
         });
     };

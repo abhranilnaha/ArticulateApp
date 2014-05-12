@@ -4,34 +4,24 @@
 <div class="modal-body">
 <section id="aligned">
 <h4><b><font color='blue'>New Category:<font color='blue'></b></h4>
-    <input type="text" name="New Category" id="New Category" placeholder="New Category Name" autocomplete="off" tabindex="1" class="txtinput">
+    <input type="text" name="New Category" id="newCategory" placeholder="New Category Name" autocomplete="off" tabindex="1" class="txtinput">
  	</section>
-	<section id="aside" class="clearfix">  
-    <section id="parent">    
-    <h4><b><font color='blue'>Main Category:<font color='blue'></b></h4>   
-    <select id="parent" name="parent" tabindex="6" class="selmenu">  
-                <option value="none">none</option>  
-                <option value="editor">Magazines</option>  
-                <option value="technical">Store</option>  
-                <option value="pr">Collections</option>                   
-            </select>  
-    </section> 
-    </section>
-    
-    <section id="aside" class="clearfix">  
-    <section id="subcat">    
-    <h4><b><font color='blue'>Sub Category:</font></b></h4>   
-    <select id="subcat" name="subcat" tabindex="6" class="selmenu">  
-                <option value="none">none</option>  
-                <option value="editor">Magazines</option>  
-                <option value="technical">Store</option>  
-                <option value="pr">Collections</option>                   
-            </select>  
-    </section> 
+		<section id="aside" class="clearfix">  
+		    <section id="parent">    
+		    <h4><b><font color='blue'>Main Category:<font color='blue'></b></h4>   
+		    <select ng-model="category1" ng-change="getCategory2(category1)" ng-options="category.name for category in category1Menu"></select><br> 
+		    </section> 
+	    </section>
+	    
+	    <section id="aside" class="clearfix">  
+		    <section id="subcat">    
+		    <h4><b><font color='blue'>Sub Category:</font></b></h4>   
+		    <select ng-model="category2" ng-change="setCategory2(category2)" ng-options="category.name for category in category2Menu"></select><br>  
+		</section> 
     </section>
       
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="ok()">Add</button>
-    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary" ng-click="addCategory()">Add</button>
+    <button class="btn btn-warning" style="margin-bottom:7px;" ng-click="cancel()">Cancel</button>
 </div>
