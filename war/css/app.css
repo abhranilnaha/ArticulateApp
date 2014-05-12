@@ -5,6 +5,14 @@ body {
   padding: 0;  
 }
 
+.app-title {
+	font-size: 25px;
+	padding-left: 15px;
+	padding-top: 5px;
+	color: #F0AD4E;
+	font-weight: bold;
+}
+
 .multilevelpushmenu_wrapper {	
 	width: 250px;
 	height: auto;
@@ -72,7 +80,8 @@ body {
 	border-radius: 4px;
 	font-size: 20px;
 	border-bottom: 1px solid;
-    border-right: 1px solid;	
+    border-right: 1px solid;
+    color: black;	
 }
 
 .gridStyle {     

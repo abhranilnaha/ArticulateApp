@@ -7,7 +7,8 @@ var articulateApp = angular.module('articulateApp', [
   'ngResource',
   'ngGrid',
   'ui.bootstrap',
-  'angularFileUpload', 	
+  'angularFileUpload',
+  'LocalStorageModule',
   'articulateAppControllers',  
   'articulateAppServices'
 ]);

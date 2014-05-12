@@ -11,17 +11,17 @@
 	<div class="col-sm-3">					
 	    <div ng-if="!authenticated" class="col-sm-5">
 	    	<label style="color:#357EBD;font-family:arial;display:block" for="usermail">Email</label> 
-	    	<input type="email" style="height:35px" id="userEmail" placeholder="yourname@email.com" required> 
+	    	<input type="email" style="height:35px;color:#000000;" id="userEmail" placeholder="yourname@email.com" required> 
 	     </div>
 	    <div ng-if="!authenticated" class="col-sm-5"> 
 	    	<label style="color:#357EBD;font-family:arial;display:block"  for="password">Password</label> 
-	    	<input type="password" style="height:35px" id="password" placeholder="password" required> 
+	    	<input type="password" style="height:35px;color:#000000;" id="userPassword" placeholder="password" required> 
 	    </div>	    
 	    <div ng-if="!authenticated" class="col-sm-2 action-container1">
 	    	<button class='btn btn-warning' ng-click="signIn()">Sign In</button>    	    	
 	    </div>
-	    <div ng-if="authenticated" class="col-sm-8 user-container"> 
-	    	{{userEmail}}
+	    <div ng-if="authenticated" class="col-sm-10 user-container"> 
+	    	Welcome, {{userEmail}}
 	    </div>
 	    <div ng-if="authenticated" class="col-sm-2 action-container2">
 	    	<button ng-if="authenticated" class='btn btn-warning' ng-click="signOut()">Sign Out</button>
@@ -30,39 +30,19 @@
 </div>
 
 <tabset justified="true">
-<tab heading="Post">
-<div id="disqus_thread"></div>
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'articulateapp'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-
-</tab>
-    <tab heading="Home">
-	   	    <div id="pushobj" style="width:700px">   
-	    		<span ng-repeat='document in documents'>
-								
-						<span style="width:200px">	<a href ng-Click="getCategorybyParent(document)"><img ng-src='{{document.link}}'  
-						style="border: 10px solid black;border-radius: 30px;margin-top: 10px;width:200px;height:200px"></img></a>
-						</span>	
-								
-				</span>	
-				<span>
+    <tab heading="Home">		
+		<div id="pushobj" style="width:700px">   
+    		<span ng-repeat='document in documents'>								
+				<span style="width:200px">	
+					<a href ng-Click="getCategorybyParent(document)">
+						<img ng-src='{{document.link}}' style="border: 10px solid black;border-radius: 30px;margin-top: 10px;width:200px;height:200px"></img>
+					</a>
+				</span>								
+			</span>	
+			<span>
 				<button class="btn btn-info" ng-click=reset()>Reset</button>	
-				</span>		
-		</div>       
-			     
-			
+			</span>		
+		</div> 	
 		
 		<button class='btn btn-info' ng-click="addCategories()">
 			<i class="fa fa-plus"></i> Add Category
@@ -71,89 +51,86 @@
 		</div>
 		<div id="audio"></div>
     </tab>
+    
     <tab heading="Favorites">
     	<div ng-if="!authenticated" ng-include="'partials/signup.html'"></div>
     	<div ng-if="authenticated" class=file-container>
-	    	<div>Uploaded files are listed as follows:</div>		
-			<div ng-repeat="file in files">
-				<div>Date: {{file.date}}</div>
-				<div>FileId: {{file.fileId}}</div>
-				<div>FileOwner: {{file.fileOwner}}</div>
-				<div>FileName: {{file.fileName}}</div>
-				<div>ContentType: {{file.contentType}}</div>
-				<div>Message: {{file.message}}</div>
-				<div>
-					<button class='btn btn-info' ng-click="deleteFile(file.fileId)">Delete</button>
-					<button class='btn btn-info' ng-click="downloadFile(file.fileId)">Download</button>					
-					<img height="50" src="/downloadFile?id={{file.fileId}}"/>
-				</div>
+	    	<div style="font-size:20px;font-weight:bold;padding:20px;">Uploaded files are listed as follows:</div>
+	    	<div class="row" style="width:1200px">		
+				<span class="col-sm-3" style="padding:20px;" ng-repeat="file in files">			
+					<img style="height:200px;width:150px;margin-left: 20px;" src="/downloadFile?id={{file.fileId}}"/>
+					<div style="font-size:15px;font-weight:bold;padding-bottom: 10px;padding-left:20px;padding-top:10px;">Message: {{file.message}}</div>
+					<div style="padding-left:20px;padding-bottom: 20px;">
+						<button class='btn btn-info' ng-click="useFile(file.message)">Select</button>
+						<button class='btn btn-info' ng-click="deleteFile(file.fileId)">Delete</button>										
+					</div>
+				</span>
 			</div>
 		</div>
-    </tab>       
-    <tab heading="Games">
-    <div style="margin-left:100px" width="450px">
-    <h3 style="align:center; padding-left: 225px;" >Games</h3>
+    </tab>
     
-    <span>
-    <a href ng-click='ballfall()'><img src="img/BallFall.png" style:"border:5px="" solid="" black"height="200px" width="200px" style="
-    margin-left: 40px;
-    marker: solid;
-    height: 200px;
-    width: 200px;
-    border: 5px solid black;
-    border-radius: 20px;
-"></img></a>
-	</span>
+    <tab heading="Post">
+		<div id="disqus_thread"></div>
+	    <script type="text/javascript">
+	        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	        var disqus_shortname = 'articulateapp'; // required: replace example with your forum shortname
 	
+	        /* * * DON'T EDIT BELOW THIS LINE * * */
+	        (function() {
+	            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	        })();
+	    </script>
+		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	</tab>
 	
-	<span>
-    <a href ng-click='snake()'><img src="img/Snake.png" style:"border:5px="" solid="" black"height="200px" width="200px" style="
-    margin-left: 40px;
-    marker: solid;
-    height: 200px;
-    width: 200px;
-    border: 5px solid black;
-    border-radius: 20px;
-"></img></a>
-	</span>
-	</div>
-	<hr>
-	<h3 style="align:center;padding-left: 250px;">Training Videos</h3>
-	<div style="margin-left:100px" width="450px">
-	<span>
-    <a href ng-click='video_abc()'><img src="img/Alphabets.png" style:"border:5px="" solid="" black"height="200px" width="200px" style="
-    margin-left: 40px;
-    marker: solid;
-    height: 200px;
-    width: 200px;
-    border: 5px solid black;
-    border-radius: 20px;
-"></img></a>
-	</span>
-	<span>
-    <a href ng-click='video_numbers()'><img src="img/Numbers.png" style:"border:5px="" solid="" black"height="200px" width="200px" style="
-    margin-left: 40px;
-    marker: solid;
-    height: 200px;
-    width: 200px;
-    border: 5px solid black;
-    border-radius: 20px;
-"></img></a>
-	</span>	
-	</div><br>
+    <tab heading="Games">
+	    <div style="margin-left:100px" width="450px">
+	    	<h3 style="align:center; padding-left: 225px;" >Games</h3>
+    
+		    <span>
+			    <a href ng-click='ballfall()'>
+			    	<img src="img/BallFall.png" style="margin-left:40px;marker:solid;height:200px;width:200px;border:5px solid black;border-radius:20px;">
+			    	</img>
+			    </a>
+			</span>
+				
+			<span>
+		    	<a href ng-click='snake()'>
+		    		<img src="img/Snake.png" style="margin-left:40px;marker:solid;height:200px;width:200px;border:5px solid black;border-radius:20px;">
+		    		</img>
+		    	</a>
+			</span>
+		</div>
+		<hr>
+		
+		<h3 style="align:center;padding-left: 250px;">Training Videos</h3>
 		<div style="margin-left:100px" width="450px">
-	<span>
-    <a href ng-click='video_shapes()'><img src="img/Shapes.png" style:"border:'5px solid black'height="200px" width="200px" style="
-    margin-left: 40px;
-    marker: solid;
-    height: 200px;
-    width: 200px;
-    border: 5px solid black;
-    border-radius: 20px;
-"></img></a>
-	</span>
+			<span>
+			    <a href ng-click='video_abc()'>
+			    	<img src="img/Alphabets.png" style="margin-left:40px;marker:solid;height:200px;width:200px;border:5px solid black;border-radius:20px;">
+			    	</img>
+			    </a>
+			</span>
+		
+			<span>
+			    <a href ng-click='video_numbers()'>
+			    	<img src="img/Numbers.png" style="margin-left:40px;marker:solid;height:200px;width:200px;border:5px solid black;border-radius:20px;">
+			    	</img>
+			    </a>
+			</span>	
+		</div><br>
 	
-	</div>
+		<div style="margin-left:100px" width="450px">
+			<span>
+			    <a href ng-click='video_shapes()'>
+			    	<img src="img/Shapes.png" style="margin-left:40px;marker:solid;height:200px;width:200px;border:5px solid black;border-radius:20px;">
+			    	</img>
+			    </a>
+			</span>	
+		</div>
 	
-    </tab> 
+    </tab>        
 </tabset>

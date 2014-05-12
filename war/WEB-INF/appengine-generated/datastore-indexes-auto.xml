@@ -1,8 +1,8 @@
-<!-- Indices written at Mon, 12 May 2014 04:49:34 PDT -->
+<!-- Indices written at Mon, 12 May 2014 01:26:21 PDT -->
 
 <datastore-indexes>
 
-    <!-- Used 1 time in query history -->
+    <!-- Used 2 times in query history -->
     <datastore-index kind="GoogleFile" ancestor="false" source="auto">
         <property name="fileOwner" direction="asc"/>
         <property name="date" direction="desc"/>

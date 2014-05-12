@@ -1,8 +1,15 @@
 <div class="modal-header">
     <h3>Image Chooser</h3>
 </div>
-<div class="modal-body">	
-	Select an image: <input type="file" ng-file-select="onFileSelect($files)">
+<div class="modal-body">
+	<div class='row'>
+		<span class="col-sm-4" style="font-weight:bold;font-size:18px;color:#428BCA">Message: </span>
+		<span class="col-sm-6"><input style="width:250px;height:30px;color:#000000;" type="text" id="favoriteMessageInput" ng-model="favoriteMessage"></span>
+	</div>	
+	<div class='row'>
+		<span class="col-sm-4" style="font-weight:bold;font-size:18px;color:#428BCA">Select an image: </span>
+		<span class="col-sm-6"><input type="file" ng-file-select="onFileSelect($files)"></span>
+	</div>
 	<div class="upload-result">{{result}}</div>	    
 </div>
 <div class="modal-footer">    
