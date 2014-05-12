@@ -70,7 +70,7 @@
     </tab>
     
     <tab heading="Post">
-		<div id="disqus_thread"></div>
+		<div id="disqus_thread" style="padding:20px"></div>
 	    <script type="text/javascript">
 	        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
 	        var disqus_shortname = 'articulateapp'; // required: replace example with your forum shortname
@@ -86,7 +86,7 @@
 		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 	</tab>
 	
-    <tab heading="Games">
+    <tab heading="Games & More">
 	    <div style="margin-left:100px" width="450px">
 	    	<h3 style="align:center; padding-left: 225px;" >Games</h3>
     
@@ -109,21 +109,28 @@
 		<h3 style="align:center;padding-left: 250px;">Training Videos</h3>
 		<div style="margin-left:100px" width="450px">
 			<span>
+			    <a href ng-click='video_introduction()'>
+			    	<img src="img/introduction.png" style="margin-left:40px;marker:solid;height:200px;width:200px;border:5px solid black;border-radius:20px;">
+			    	</img>
+			    </a>
+			</span>
+			<span>
 			    <a href ng-click='video_abc()'>
 			    	<img src="img/Alphabets.png" style="margin-left:40px;marker:solid;height:200px;width:200px;border:5px solid black;border-radius:20px;">
 			    	</img>
 			    </a>
 			</span>
 		
+				
+		</div><br>
+	
+		<div style="margin-left:100px" width="450px">
 			<span>
 			    <a href ng-click='video_numbers()'>
 			    	<img src="img/Numbers.png" style="margin-left:40px;marker:solid;height:200px;width:200px;border:5px solid black;border-radius:20px;">
 			    	</img>
 			    </a>
-			</span>	
-		</div><br>
-	
-		<div style="margin-left:100px" width="450px">
+			</span>
 			<span>
 			    <a href ng-click='video_shapes()'>
 			    	<img src="img/Shapes.png" style="margin-left:40px;marker:solid;height:200px;width:200px;border:5px solid black;border-radius:20px;">
