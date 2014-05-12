@@ -304,6 +304,7 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeServic
     $scope.reset = function() {
     	$location.path('/');
     }
+    
     $scope.items = ['item1', 'item2', 'item3'];
     $scope.ballfall = function(message) {		
 		var modalInstance = $modal.open({
@@ -428,11 +429,11 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeServic
 	    }, function () {
 	      console.log('Modal dismissed at: ' + new Date());
 	    });
-	};
+	};	
 	
-	$scope.video_introduction = function(message) {		
+	$scope.video_shapes = function(message) {		
 		var modalInstance = $modal.open({
-	      templateUrl: 'partials/video_introduction.html',
+	      templateUrl: 'partials/video_shapes.html',
 	      controller: function ($scope, items) {
 	    	  $scope.items = items;
 	    	  $scope.selected = {
@@ -460,11 +461,10 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeServic
 	      console.log('Modal dismissed at: ' + new Date());
 	    });
 	};
-
 	
-	$scope.video_shapes = function(message) {		
+	$scope.video_introduction = function(message) {		
 		var modalInstance = $modal.open({
-	      templateUrl: 'partials/video_shapes.html',
+	      templateUrl: 'partials/video_introduction.html',
 	      controller: function ($scope, items) {
 	    	  $scope.items = items;
 	    	  $scope.selected = {

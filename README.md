@@ -37,5 +37,5 @@ Team members
 Abhranil Naha,
 Varun Dixit,
 Harini Aswin,
-Priya Rajesh,
+Priyadarsini Rajesh,
 Asif Nadaf
