@@ -77,7 +77,7 @@ public class SetupCategoriesServlet extends HttpServlet {
 			categoryDAO.addCategory("nice", "be", "img/Categories/Level3/nice.png", "", "3");
 			categoryDAO.addCategory("friendly", "be", "img/Categories/Level3/friendly.png", "", "3");
 			categoryDAO.addCategory("trouble", "help", "img/Categories/Level3/trouble.png", "", "3");
-			categoryDAO.addCategory("grammar", "help", "img/Categories/Level3/grammer.png", "", "3");
+			categoryDAO.addCategory("grammar", "help", "img/Categories/Level3/grammar.png", "", "3");
 			categoryDAO.addCategory("jokes", "hear", "img/Categories/Level3/jokes.png", "", "3");
 			categoryDAO.addCategory("speech", "hear", "img/Categories/Level3/speech.png", "", "3");
 			categoryDAO.addCategory("School", "", "img/Categories/Level1/school.png", "", "1");
