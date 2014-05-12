@@ -185,9 +185,18 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeServic
 	
 	// Code for sentence maker
 	$scope.makeSentence = function () {
-		$scope.noun = 'mary';
-		$scope.verb = 'want';
-		$scope.object = 'tea';
+		$scope.noun = '';
+		$scope.verb = '';
+		$scope.object = '';
+		var result = $scope.message.split(" ");
+		$scope.noun = result[0];
+		if (result.length == 4) {
+			$scope.verb = result[1] + ' to ' + result[2];
+			$scope.object = result[3];
+		} else if (result.length == 3) {
+			$scope.verb = result[1];
+			$scope.object = result[3];
+		}		
 		var parentScope = $scope;
 		var modalInstance = $modal.open({
 			templateUrl: 'partials/sentenceMaker.html',

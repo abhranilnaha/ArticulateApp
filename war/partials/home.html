@@ -1,7 +1,7 @@
 <div style="width:100%;"class="row">
 	<div class="message-container col-sm-9">
 		<span class="message-label">Message: </span> 
-		<input type="text" class="message-input" ng-model="message" spellcheck="true">
+		<input type="text" class="message-input" ng-model="message" style="height:35px;" spellcheck="true">
 		<button class='btn btn-primary' ng-click="openFileUploadPopup()">Add to Favorites</button>
 		<button class='btn btn-primary' ng-click="makeSentence()">Make Sentence</button>
 		<button class='btn btn-primary' ng-click="message = ''">Clear Text</button>
@@ -35,7 +35,7 @@
     		<span ng-repeat='document in documents'>								
 				<span style="width:200px">	
 					<a href ng-Click="getCategorybyParent(document)">
-						<img ng-src='{{document.link}}' style="border: 10px solid black;border-radius: 30px;margin-top: 10px;width:200px;height:200px"></img>
+						<img ng-src='{{document.link}}' style="border: 10px solid black;border-radius: 30px;margin-top: 10px;width:200px;height:180px"></img>
 					</a>
 				</span>								
 			</span>	
