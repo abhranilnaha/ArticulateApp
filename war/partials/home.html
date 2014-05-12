@@ -15,7 +15,7 @@
 	     </div>
 	    <div ng-if="!authenticated" class="col-sm-5"> 
 	    	<label style="color:#357EBD;font-family:arial;display:block"  for="password">Password</label> 
-	    	<input type="password" style="height:35px" id="userPassword" placeholder="password" required> 
+	    	<input type="password" style="height:35px" id="password" placeholder="password" required> 
 	    </div>	    
 	    <div ng-if="!authenticated" class="col-sm-2 action-container1">
 	    	<button class='btn btn-warning' ng-click="signIn()">Sign In</button>    	    	
@@ -30,14 +30,39 @@
 </div>
 
 <tabset justified="true">
-    <tab heading="Home">		
-		<div id="pushobj" style="width:700px">   
- 	    	<span ng-repeat='document in documents'> 								
- 				<span style="width:200px">	<a href ng-Click="getCategorybyParent(document)">
- 					<img ng-src='{{document.link}}' border="5px #00000" style="border-radius: 30px;margin-top: 10px;width:200px;border-style:solid;border-color:#000000 #000000;height:200px"></img></a>
- 				</span>			
- 			</span>				
- 		</div> 	
+<tab heading="Post">
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'articulateapp'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</tab>
+    <tab heading="Home">
+	   	    <div id="pushobj" style="width:700px">   
+	    		<span ng-repeat='document in documents'>
+								
+						<span style="width:200px">	<a href ng-Click="getCategorybyParent(document)"><img ng-src='{{document.link}}'  
+						style="border: 10px solid black;border-radius: 30px;margin-top: 10px;width:200px;height:200px"></img></a>
+						</span>	
+								
+				</span>	
+				<span>
+				<button class="btn btn-info" ng-click=reset()>Reset</button>	
+				</span>		
+		</div>       
+			     
+			
 		
 		<button class='btn btn-info' ng-click="addCategories()">
 			<i class="fa fa-plus"></i> Add Category
@@ -64,16 +89,71 @@
 				</div>
 			</div>
 		</div>
-    </tab>
-    <tab heading="Games">    
-<! 		<div class="ng-scope" style="border: 3px solid rgb(201, 0, 1); overflow: hidden; margin: 15px auto; max-width: 270px;">
-     		<iframe scrolling="no" style="border: 0px none; margin-left: -280px; height: 530px; margin-top: -3px; width: 926px;" src="'partials/fighterchallenge.htm'">
-     			<p>Not Supported in Browser</p> 
-<div ng-bind-html-unsafe="partials/fighterchallenge.htm"></div>-->
-<div ng-include="'partials/fighterchallenge.htm'"></div>
-
-
-    		</iframe>
-    	</div>
-    </tab>        
+    </tab>       
+    <tab heading="Games">
+    <div style="margin-left:100px" width="450px">
+    <h3 style="align:center; padding-left: 225px;" >Games</h3>
+    
+    <span>
+    <a href ng-click='ballfall()'><img src="img/BallFall.png" style:"border:5px="" solid="" black"height="200px" width="200px" style="
+    margin-left: 40px;
+    marker: solid;
+    height: 200px;
+    width: 200px;
+    border: 5px solid black;
+    border-radius: 20px;
+"></img></a>
+	</span>
+	
+	
+	<span>
+    <a href ng-click='snake()'><img src="img/Snake.png" style:"border:5px="" solid="" black"height="200px" width="200px" style="
+    margin-left: 40px;
+    marker: solid;
+    height: 200px;
+    width: 200px;
+    border: 5px solid black;
+    border-radius: 20px;
+"></img></a>
+	</span>
+	</div>
+	<hr>
+	<h3 style="align:center;padding-left: 250px;">Training Videos</h3>
+	<div style="margin-left:100px" width="450px">
+	<span>
+    <a href ng-click='video_abc()'><img src="img/Alphabets.png" style:"border:5px="" solid="" black"height="200px" width="200px" style="
+    margin-left: 40px;
+    marker: solid;
+    height: 200px;
+    width: 200px;
+    border: 5px solid black;
+    border-radius: 20px;
+"></img></a>
+	</span>
+	<span>
+    <a href ng-click='video_numbers()'><img src="img/Numbers.png" style:"border:5px="" solid="" black"height="200px" width="200px" style="
+    margin-left: 40px;
+    marker: solid;
+    height: 200px;
+    width: 200px;
+    border: 5px solid black;
+    border-radius: 20px;
+"></img></a>
+	</span>	
+	</div><br>
+		<div style="margin-left:100px" width="450px">
+	<span>
+    <a href ng-click='video_shapes()'><img src="img/Shapes.png" style:"border:'5px solid black'height="200px" width="200px" style="
+    margin-left: 40px;
+    marker: solid;
+    height: 200px;
+    width: 200px;
+    border: 5px solid black;
+    border-radius: 20px;
+"></img></a>
+	</span>
+	
+	</div>
+	
+    </tab> 
 </tabset>

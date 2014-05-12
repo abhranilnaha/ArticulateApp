@@ -75,6 +75,168 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeServic
 		speak(message);
 	}
 	
+	$scope.ballfall = function(message) {		
+		var modalInstance = $modal.open({
+	      templateUrl: 'partials/ballfall.html',
+	      controller: function ($scope, items) {
+	    	  $scope.items = items;
+	    	  $scope.selected = {
+	    	    item: $scope.items[0]
+	    	  };
+
+	    	  $scope.ok = function () {
+	    	    modalInstance.close($scope.selected.item);
+	    	  };
+
+	    	  $scope.cancel = function () {
+	    	    modalInstance.dismiss('cancel');
+	    	  }; 
+	      },
+	      resolve: {	    	  
+	        items: function () {
+	          return $scope.items;
+	        }
+	      }
+	    });
+
+	    modalInstance.result.then(function (selectedItem) {
+	      $scope.selected = selectedItem;
+	    }, function () {
+	      console.log('Modal dismissed at: ' + new Date());
+	    });
+	};
+	
+	$scope.snake = function(message) {		
+		var modalInstance = $modal.open({
+	      templateUrl: 'partials/snake.html',
+	      controller: function ($scope, items) {
+	    	  $scope.items = items;
+	    	  $scope.selected = {
+	    	    item: $scope.items[0]
+	    	  };
+
+	    	  $scope.ok = function () {
+	    	    modalInstance.close($scope.selected.item);
+	    	  };
+
+	    	  $scope.cancel = function () {
+	    	    modalInstance.dismiss('cancel');
+	    	  }; 
+	      },
+	      resolve: {	    	  
+	        items: function () {
+	          return $scope.items;
+	        }
+	      }
+	    });
+
+	    modalInstance.result.then(function (selectedItem) {
+	      $scope.selected = selectedItem;
+	    }, function () {
+	      console.log('Modal dismissed at: ' + new Date());
+	    });
+	};
+	
+
+	$scope.video_abc = function(message) {		
+		var modalInstance = $modal.open({
+	      templateUrl: 'partials/video_abc.html',
+	      controller: function ($scope, items) {
+	    	  $scope.items = items;
+	    	  $scope.selected = {
+	    	    item: $scope.items[0]
+	    	  };
+
+	    	  $scope.ok = function () {
+	    	    modalInstance.close($scope.selected.item);
+	    	  };
+
+	    	  $scope.cancel = function () {
+	    	    modalInstance.dismiss('cancel');
+	    	  }; 
+	      },
+	      resolve: {	    	  
+	        items: function () {
+	          return $scope.items;
+	        }
+	      }
+	    });
+
+	    modalInstance.result.then(function (selectedItem) {
+	      $scope.selected = selectedItem;
+	    }, function () {
+	      console.log('Modal dismissed at: ' + new Date());
+	    });
+	};
+
+	$scope.video_numbers = function(message) {		
+		var modalInstance = $modal.open({
+	      templateUrl: 'partials/video_numbers.html',
+	      controller: function ($scope, items) {
+	    	  $scope.items = items;
+	    	  $scope.selected = {
+	    	    item: $scope.items[0]
+	    	  };
+
+	    	  $scope.ok = function () {
+	    	    modalInstance.close($scope.selected.item);
+	    	  };
+
+	    	  $scope.cancel = function () {
+	    	    modalInstance.dismiss('cancel');
+	    	  }; 
+	      },
+	      resolve: {	    	  
+	        items: function () {
+	          return $scope.items;
+	        }
+	      }
+	    });
+
+	    modalInstance.result.then(function (selectedItem) {
+	      $scope.selected = selectedItem;
+	    }, function () {
+	      console.log('Modal dismissed at: ' + new Date());
+	    });
+	};
+	
+	
+	$scope.video_shapes = function(message) {		
+		var modalInstance = $modal.open({
+	      templateUrl: 'partials/video_shapes.html',
+	      controller: function ($scope, items) {
+	    	  $scope.items = items;
+	    	  $scope.selected = {
+	    	    item: $scope.items[0]
+	    	  };
+
+	    	  $scope.ok = function () {
+	    	    modalInstance.close($scope.selected.item);
+	    	  };
+
+	    	  $scope.cancel = function () {
+	    	    modalInstance.dismiss('cancel');
+	    	  }; 
+	      },
+	      resolve: {	    	  
+	        items: function () {
+	          return $scope.items;
+	        }
+	      }
+	    });
+
+	    modalInstance.result.then(function (selectedItem) {
+	      $scope.selected = selectedItem;
+	    }, function () {
+	      console.log('Modal dismissed at: ' + new Date());
+	    });
+	};
+
+
+	
+	
+	
+	
 	// Code for add categories modal dialog
 	$scope.addCategories = function() {		
 		var modalInstance = $modal.open({
