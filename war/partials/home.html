@@ -66,9 +66,13 @@
 		</div>
     </tab>
     <tab heading="Games">    
- 		<div class="ng-scope" style="border: 3px solid rgb(201, 0, 1); overflow: hidden; margin: 15px auto; max-width: 270px;">
-     		<iframe scrolling="no" style="border: 0px none; margin-left: -280px; height: 530px; margin-top: -3px; width: 926px;" src="">
-     			<p>Not Supported in Browser</p>
+<! 		<div class="ng-scope" style="border: 3px solid rgb(201, 0, 1); overflow: hidden; margin: 15px auto; max-width: 270px;">
+     		<iframe scrolling="no" style="border: 0px none; margin-left: -280px; height: 530px; margin-top: -3px; width: 926px;" src="'partials/fighterchallenge.htm'">
+     			<p>Not Supported in Browser</p> 
+<div ng-bind-html-unsafe="partials/fighterchallenge.htm"></div>-->
+<div ng-include="'partials/fighterchallenge.htm'"></div>
+
+
     		</iframe>
     	</div>
     </tab>        
