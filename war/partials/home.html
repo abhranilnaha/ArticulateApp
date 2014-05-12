@@ -31,17 +31,17 @@
 
 <tabset justified="true">
     <tab heading="Home">		
-		<div id="pushobj" style="width:700px">   
-    		<span ng-repeat='document in documents'>								
+		<div id="pushobj" style="width:700px">
+			<span style="float:right;padding-top:20px">
+				<button class="btn btn-info" ng-click=reset()>Reset</button>	
+			</span>   
+    		<span ng-repeat='document in documents'>    											
 				<span style="width:200px">	
 					<a href ng-Click="getCategorybyParent(document)">
 						<img ng-src='{{document.link}}' style="border: 10px solid black;border-radius: 30px;margin-top: 10px;width:200px;height:180px"></img>
 					</a>
 				</span>								
-			</span>	
-			<span>
-				<button class="btn btn-info" ng-click=reset()>Reset</button>	
-			</span>		
+			</span>					
 		</div> 	
 		
 		<button class='btn btn-info' ng-click="addCategories()">
