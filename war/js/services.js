@@ -27,6 +27,16 @@ articulateAppServices.service('homeService', ['$resource', function($resource,$h
                method: 'GET',                
                url: '/makeSentence?noun=:noun&verb=:verb&object=:object&extra=:extra&tense=:tense&negation=:negation&question=:question', 
            	   isArray: false
+          },
+          addUser: {
+        	  url: '/authenticateUser', 
+        	  method: "POST", 
+        	  isArray: false
+          },
+          getUser: {
+        	  url: '/authenticateUser?userEmail=:userEmail', 
+        	  method: "GET", 
+        	  isArray: false
           }
         }
     );
@@ -51,6 +61,19 @@ articulateAppServices.service('homeService', ['$resource', function($resource,$h
     
     this.makeSentence = function(noun, verb, object, extra, tense, negation, question) {
         return resource.makeSentence({noun: noun, verb: verb, object: object, extra: extra, tense :tense, negation: negation, question: question}).$promise.then(function(result){
+            return result;
+        });
+    };
+    
+    this.addUser = function(userEmail, userPassword) {
+    	var user = {userEmail: userEmail, userPassword: userPassword};
+        return resource.addUser(user).$promise.then(function(result) {
+            return result;
+        });
+    };
+    
+    this.getUser = function(userEmail) {    	
+        return resource.getUser({userEmail: userEmail}).$promise.then(function(result) {
             return result;
         });
     };

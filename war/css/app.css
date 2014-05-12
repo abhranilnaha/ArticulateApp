@@ -116,6 +116,16 @@ body {
 	font-weight: bold;
 }
 
+.login-message {
+	color: red;
+	font-weight: bold;
+	padding-bottom: 10px;
+}
+
+.signup-modal .modal-content {
+	height: 450px;
+}
+
 #wrapper {
         width:450px;
         height:330px;

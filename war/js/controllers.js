@@ -207,14 +207,56 @@ articulateAppControllers.controller('HomeCtrl', ['$scope', '$modal', 'homeServic
     
     $scope.signIn = function() {
     	$scope.userEmail = $('#userEmail').val();
+    	$scope.userPassword = $('#userPassword').val();
     	$scope.cache.put('userName', userEmail);
-    	$scope.authenticated = true;
+    	homeService.getUser($scope.userEmail).then(function (response) {
+    		if (response.message) {
+    		var savedPassword  = CryptoJS.enc.Utf8.stringify(angular.fromJson(response.message));
+	            if ($scope.userPassword && savedPassword == $scope.userPassword) {
+	            	$scope.authenticated = true;
+	            	return;
+	            }
+    		}
+    		var parentScope = $scope;
+    		var modalInstance = $modal.open({
+    			templateUrl: 'partials/signup.html',
+    			windowClass: 'signup-modal',
+    			controller: function ($scope, message) {
+    				$scope.message = message;    				    				
+    			    $scope.signUp = function () {
+    			    	var userEmail = $('.signup-modal').find('#signUpEmail').val();
+    			    	var userPassword1 = $('.signup-modal').find('#signUpPassword1').val();
+    			    	var userPassword2 = $('.signup-modal').find('#signUpPassword2').val();
+    			    	var result = parentScope.signUp(userEmail, userPassword1, userPassword2);
+    			    	if (result != 'error') {
+    			    		modalInstance.dismiss('cancel');
+    			    	} else {
+    			    		$scope.message = "Passwords do not match!";
+    			    	}	
+    		    	}; 
+    			},
+    			resolve: {	    	  
+    				message: function () {
+    		          return "Invalid Login!";
+    		        }
+    		    }
+    		});            
+    	});    	
     }
     
-    $scope.signUp = function() {
-    	$scope.userEmail = $('#signUpEmail').val();
-    	$scope.cache.put('userName', userEmail);
-    	$scope.authenticated = true;
+    $scope.signUp = function(userEmail, userPassword1, userPassword2) {
+    	$scope.userEmail = $('#signUpEmail').val() || userEmail;
+    	$scope.userPassword1 = $('#signUpPassword1').val() || userPassword1;
+    	$scope.userPassword2 = $('#signUpPassword2').val() || userPassword2;
+    	$scope.cache.put('userName', $scope.userEmail);
+    	if ($scope.userPassword1 != $scope.userPassword2) {
+    		$scope.message = "Passwords do not match!"
+    		return "error";	
+    	}
+    	var words = CryptoJS.enc.Utf8.parse($scope.userPassword1);
+    	homeService.addUser($scope.userEmail, words).then(function (response) {
+    		$scope.authenticated = true;
+    	});   	
     }
     
     $scope.signOut = function() {

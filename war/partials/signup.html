@@ -1,12 +1,13 @@
 <div id="wrapper">    
 	<fieldset>
+		<div class="login-message">{{message}}</div>
 		<legend> Create Your Account </legend>	
 	  	<div><b><FONT FACE="Comic Sans MS">Email</FONT></b><div>
 		<div><input type="text" id="signUpEmail" placeholder="Enter Email id"/></div>             
       	<div><b><FONT FACE="Comic Sans MS">Password</FONT></b></div>
-      	<div><input type="password" id="password1" placeholder="Enter password"/></div>              
+      	<div><input type="password" id="signUpPassword1" placeholder="Enter password"/></div>              
 		<div><b><FONT FACE="Comic Sans MS">Confirm Password</FONT></b></div>
-      	<div><input type="password" id="password2" placeholder="Re-enter password"/> </div>            
+      	<div><input type="password" id="signUpPassword2" placeholder="Re-enter password"/> </div>            
       	<br></br>
       	<button class="btn btn-warning" ng-click="reset()" style="float:right">Cancel</button>
       	<button class="btn btn-primary" ng-click="signUp()" style="float: right; margin-right:20px">Submit</button>		
