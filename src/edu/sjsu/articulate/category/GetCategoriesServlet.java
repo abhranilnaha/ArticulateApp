@@ -34,8 +34,8 @@ public class GetCategoriesServlet extends HttpServlet {
 			List<Item> list = new ArrayList<Item>();
 			
 			Item itemRoot = new Item();
-			itemRoot.setIcon("fa fa-reorder");
 			itemRoot.setTitle("All Categories");
+			itemRoot.setIcon("fa fa-reorder");
 			itemRoot.setItems(categoryDAO.getCategoriesResponse(""));
 			
 			list.add(itemRoot);
