@@ -43,7 +43,51 @@ public class CategoryDAO {
 		
 		return category;
 	}
-	
+
+//	public List<GetCategoriesResponse> getCategoriesResponse(String inputName) {
+//		List<GetCategoriesResponse> categoriesResponse = new ArrayList<GetCategoriesResponse>();
+//		
+//		List<Category> categories = getCategoriesByParentName(inputName);
+//
+//		for (Category cat : categories) {
+//			GetCategoriesResponse catResp = new GetCategoriesResponse();
+//			catResp.setName(cat.getName());
+//			catResp.setIcon(cat.getIcon());
+//			catResp.setLink(cat.getLink());
+//			
+//			
+//			List<GetCategoriesResponse> subCategoriesResponse = new ArrayList<GetCategoriesResponse>();
+//			
+//			List<Category> subCategories = getCategoriesByParentName(cat.getName());
+//			
+//			for(Category subCat : subCategories) {
+//				GetCategoriesResponse subCatResp = new GetCategoriesResponse();
+//				subCatResp.setName(subCat.getName());
+//				subCatResp.setIcon(subCat.getIcon());
+//				subCatResp.setLink(subCat.getLink());
+//				
+//				List<GetCategoriesResponse> subCategories1Response = new ArrayList<GetCategoriesResponse>();
+//				
+//				List<Category> subCategories1 = getCategoriesByParentName(subCat.getName());
+//				for(Category subCat1 : subCategories1) {
+//					GetCategoriesResponse subCat1Resp = new GetCategoriesResponse();
+//					subCat1Resp.setName(subCat1.getName());
+//					subCat1Resp.setIcon(subCat1.getIcon());
+//					subCat1Resp.setLink(subCat1.getLink());
+//					
+//					subCategories1Response.add(subCat1Resp);
+//				}
+//				subCatResp.setItems(subCategories1Response);
+//				subCategoriesResponse.add(subCatResp);
+//			}
+//			
+//			catResp.setItems(subCategoriesResponse);
+//			categoriesResponse.add(catResp);
+//		}
+//			
+//		
+//		return categoriesResponse;
+//	}
 	
 
 	public List<CategoryResponse> getCategoriesResponse(String inputName) {
