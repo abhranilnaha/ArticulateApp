@@ -16,7 +16,7 @@ public class CategoryDAO {
 	public Category addCategory(String name, String parentName, String link, String icon, String level) throws Exception {
 		
 		Category category = new Category();
-		if (name != null && !name.trim().isEmpty()) {
+		if (name != null && (!name.trim().isEmpty())) {
 			
 			name = name.trim();
 			parentName = parentName.trim();
@@ -43,8 +43,7 @@ public class CategoryDAO {
 		
 		return category;
 	}
-	
-	
+
 //	public List<GetCategoriesResponse> getCategoriesResponse(String inputName) {
 //		List<GetCategoriesResponse> categoriesResponse = new ArrayList<GetCategoriesResponse>();
 //		
@@ -90,6 +89,7 @@ public class CategoryDAO {
 //		return categoriesResponse;
 //	}
 	
+
 	public List<CategoryResponse> getCategoriesResponse(String inputName) {
 		List<CategoryResponse> categoriesResponse = new ArrayList<CategoryResponse>();
 		

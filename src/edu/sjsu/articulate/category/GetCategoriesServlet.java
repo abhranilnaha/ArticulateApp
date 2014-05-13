@@ -30,13 +30,7 @@ public class GetCategoriesServlet extends HttpServlet {
 		
 		String level = request.getParameter("level");
 		
-		if(level != null) {
-			
-			List<Category> categories = categoryDAO.getCategoriesByLevel(level);
-			Gson gson = new Gson();
-			jsonOutput = gson.toJson(categories);
-			
-		} else {
+		if(level == null) {
 			List<Item> list = new ArrayList<Item>();
 			
 			Item itemRoot = new Item();
@@ -48,8 +42,12 @@ public class GetCategoriesServlet extends HttpServlet {
 			
 			Gson gson = new Gson();
 			jsonOutput = gson.toJson(list);
+			
+		} else {
+			List<Category> categories = categoryDAO.getCategoriesByLevel(level);
+			Gson gson = new Gson();
+			jsonOutput = gson.toJson(categories);
 		}
-		
 
 		response.setContentType("application/json; charset=UTF-8");
 		PrintWriter out = response.getWriter();
