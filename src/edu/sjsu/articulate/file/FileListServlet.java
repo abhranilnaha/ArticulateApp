@@ -34,10 +34,8 @@ public class FileListServlet extends HttpServlet {
 		List<GoogleFile> entities = (List<GoogleFile>) query.execute();
 		Vector vFiles = new Vector();
 		
-		if (entities.isEmpty() > 0) 
-		{
-			for (GoogleFile gFile : entities) 
-			{				
+		if (!entities.isEmpty()) {		
+			for (GoogleFile gFile : entities) {				
 				int fileSize = gFile.getFileSize();
 				String contentType = gFile.getContentType();
 				Date fileDate = gFile.getDate();
